@@ -1,10 +1,532 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>SandboxBT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANDBOX | Collectif Minecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --rose: #D74F81;
+      --bordeaux: #B82C5E;
+      --jaune: #EFC812;
+      --gris: #2B2C31;
+      --blanc: #FEFCFE;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--gris);
+      color: var(--blanc);
+      overflow-x: hidden;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+        color: #EFC812;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .diaporama {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    .diaporama img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .diaporama img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 2.5rem;
+      
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      z-index: 2;
+    }
+    .caption {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 0;
+      z-index: 2;
+      margin-bottom: 0.4em;
+    }
+    .dots {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 3;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border: 1px solid white;
+      border-radius: 0;
+      rotate: 22.5deg;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active {
+      background: white;
+    }
+    .logo-floating {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      height: 60px;
+      z-index: 5;
+    }
+    .intro {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+.creations-grid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 300px;
+  background: white;
+  color: var(--gris);
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+      height: fit-content;
+}
+
+.item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+.banner {
+  height: 50px;
+  overflow: hidden;
+  transition: height 0.4s ease;
+  filter: grayscale(100%);
+      border-bottom: 10px;
+    border-block: solid;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-width: thick;
+    border-color: var(--rose);
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.content {
+  padding: 20px;
+  text-align: left;
+}
+
+.content .logo {
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 10px;
+  transition: all 0.4s ease, filter 0.4s ease;
+}
+
+.item:hover .banner {
+  height: 150px;
+}
+
+.item:hover .banner,
+.item:hover .logo {
+  filter: grayscale(0%);
+}
+
+.item:hover .logo {
+  transform: scale(0.5);
+  margin: -15px auto;
+}
+
+.content h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: var(--gris);
+}
+
+.content p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--gris);
+  max-height: 3em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item:hover .content p {
+      text-overflow:initial;
+  overflow: visible;
+  max-height: unset;
+}
+
+
+ .portraits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    .person {
+      text-align: center;
+      max-width: 300px;
+    }
+    .person img {
+      border: 6px solid white;
+      border-radius: 0;
+    }
+    .person h3 {
+        margin-top: 10px;
+    }
+    .socials i {
+      font-size: 1.5rem;
+      margin: 10px;
+      color: var(--jaune);
+      transition: color 0.3s;
+    }
+    .socials i:hover {
+      color: var(--rose);
+    }
+    .card {
+  perspective: 1000px;
+  transition: transform 0.2s ease;
+}
+
+.card-inner {
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.person img {
+  border: 6px solid white;
+  border-radius: 0;
+  display: block;
+}
+
+.discord-btn {
+  display: inline-flex; /* pas flex ou block */
+  width: auto;          /* annule tout 100% */
+  max-width: fit-content;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 20px;
+  background: var(--gris);
+  color: var(--blanc);
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  align-items: center;
+  border-width: 3px;
+  border-color: var(--blanc);
+  border-radius: 0;
+  border-style: solid;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.discord-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.discord-btn i {
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.discord-btn:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.discord-btn:hover i {
+  transform: translateX(2.9em) rotate(20deg) scale(1.1);
+  color: var(--blanc);
+}
+
+.discord-btn:hover span {
+  transform: translateX(5em);
+  opacity: 0;
+}
+
+.discord-btn:hover {
+  background: var(--jaune);
+  color: var(--blanc);
+    border-color: var(--jaune);
+}
+
+.discord-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+.footer {
+  background-color: var(--rose);
+  color: var(--blanc);
+  text-align: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.footer a {
+  color: var(--blanc);
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: var(--jaune);
+}
+
+.creations-grid .item::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-image: url('https://sandboxbt.com/assets/bucket-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  bottom: 0;
+  left: 100%;
+  bottom: auto;
+  transform: translate(-80%, -80%);
+  pointer-events: none;
+}
+
+/* Optional hover enhancements */
+.creations-grid .item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.creations-grid .item {
+    transform: scale(1);
+}
+  </style>
 </head>
 <body>
-  <h1>Bienvenue sur SandboxBT !</h1>
-  <p>Utilisez /discord pour rejoindre notre serveur Discord.</p>
+  <!-- Logo flottant -->
+  <img src="https://sandboxbt.com/assets/logo-sb-blackbg.svg" alt="Logo SANDBOX" class="logo-floating" />
+
+  <!-- Section Hero + Diaporama -->
+  <section class="hero">
+    <div class="diaporama" id="diaporama">
+      <img src="https://sandboxbt.com/assets/creations/crazytown-s2-1.jpeg" data-caption="Crazytown Saison 2" class="active"/>
+      <img src="https://sandboxbt.com/assets/creations/crazytown-s2-2.jpeg" data-caption="Crazytown Saison 2" />
+      <img src="https://sandboxbt.com/assets/creations/crazytown-s2-3.jpg" data-caption="Crazytown Saison 2" />
+      <img src="https://sandboxbt.com/assets/creations/crazytown-s2-5.jpg" data-caption="Crazytown Saison 2" />
+      <img src="https://sandboxbt.com/assets/creations/crazytown-s3-1.jpeg" data-caption="Crazytown Saison 3" />
+    </div>
+    <h1>CHAQUE GRAIN DE SABLE COMPTE</h1>
+    <div class="caption" id="caption">Crazytown Saison 2</div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- Présentation SANDBOX -->
+  <section class="section intro">
+    <h2>Bienvenue dans l’univers SANDBOX</h2>
+    <p>Un collectif fondé par <strong>Cyllu</strong> et <strong>LordFinn</strong>, spécialisé dans la construction, création et production d’expériences immersives sur Minecraft.</p>
+    <p>À l’origine des projets Crazytown saisons 2 & 3, nous façonnons avec passion des mondes funs, communautaires et créatifs.</p>
+<a href="http://sandboxbt.com/discord" class="discord-btn">
+  <div class="svg-wrapper-1">
+    <div class="svg-wrapper">
+      <i class="fab fa-discord"></i>
+    </div>
+  </div>
+  <span>Rejoins nous !</span>
+</a>
+  </section>
+
+  <!-- Section Créations -->
+<section class="section creations">
+  <h2>Nos créations Minecraft</h2>
+  <div class="creations-grid">
+    <div class="item">
+      <div class="banner">
+        <img src="https://sandboxbt.com/assets/creations/crazytown-s2-3.jpg" alt="Bannière Crazytown S2">
+      </div>
+      <div class="content">
+        <img class="logo" src="https://sandboxbt.com/assets/crazytown2-logo.png" alt="Logo Crazytown">
+        <h3>CrazyTown Saison 2</h3>
+        <p>Une carte entièrement customisée, rythmée par des événements hebdomadaires, pour une aventure communautaire riche et immersive.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="banner">
+        <img src="https://sandboxbt.com/assets/creations/crazytown-s3-1.jpeg" alt="Bannière Crazytown S3">
+      </div>
+      <div class="content">
+        <img class="logo" src="https://sandboxbt.com/assets/crazytown3-logo.png" alt="Logo Crazytown">
+        <h3>CrazyTown Saison 3</h3>
+        <p>Un univers RP sur mesure, enrichi par des mods, des constructions uniques et des modèles 3D personnalisés, avec des événements réguliers pour animer la communauté.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Présentation Fondateurs -->
+  <section class="section fondateurs">
+    <h2>Les Fondateurs</h2>
+    <div class="portraits">
+      <div class="person card">
+        <img src="https://sandboxbt.com/assets/cyllu.png" alt="Portrait Cyllu">
+        <h3>Cyllu</h3>
+        <div class="socials">
+          <a href="#"><i class="fab fa-twitch"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="person card">
+        <img src="https://sandboxbt.com/assets/lordfinn.png" alt="Portrait LordFinn">
+        <h3>LordFinn</h3>
+        <div class="socials">
+          <a href="#"><i class="fab fa-twitch"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <p>&copy; SANDBOX Collectif Minecraft - Tous droits réservés.</p>
+  <p>Contact : <a href="mailto:sandboxbt.contact@gmail.com">sandboxbt.contact@gmail.com</a></p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+  <script>
+    const images = document.querySelectorAll('#diaporama img');
+    const caption = document.getElementById('caption');
+    const dotsContainer = document.getElementById('dots');
+    let current = 0;
+    let interval;
+    let isHoveringDots = false;
+
+    images.forEach((img, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => showImage(i));
+      dot.addEventListener('mouseenter', () => isHoveringDots = true);
+      dot.addEventListener('mouseleave', () => isHoveringDots = false);
+      dotsContainer.appendChild(dot);
+    });
+
+    function showImage(index) {
+      images[current].classList.remove('active');
+      dotsContainer.children[current].classList.remove('active');
+      current = index;
+      images[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+      caption.textContent = images[current].getAttribute('data-caption');
+    }
+
+    function startDiaporama() {
+      interval = setInterval(() => {
+        if (!isHoveringDots) {
+          showImage((current + 1) % images.length);
+        }
+      }, 4000);
+    }
+
+    
+
+    startDiaporama();
+      VanillaTilt.init(document.querySelectorAll(".person img"), {
+    max: 10,
+    speed: 300,
+    glare: true,
+    "max-glare": 0.2,
+    scale: 1.02
+  });
+
+  document.querySelectorAll('.creations-grid .item').forEach(card => {
+  const angle = Math.floor(Math.random() * 360);
+  card.style.setProperty('--random-rotate', angle);
+});
+  </script>
 </body>
 </html>
