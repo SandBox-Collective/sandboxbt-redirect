@@ -49,6 +49,7 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      display: inline-flex;
     }
     .diaporama {
       position: absolute;
@@ -376,6 +377,16 @@
 .creations-grid .item {
     transform: scale(1);
 }
+
+.slogan {
+    width: 80vw;
+    max-height: 40vh;
+    height: auto;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    display: block;
+}
   </style>
 </head>
 <body>
@@ -391,7 +402,7 @@
       <img src="https://sandboxbt.com/assets/creations/crazytown-s2-5.jpg" data-caption="Crazytown Saison 2" />
       <img src="https://sandboxbt.com/assets/creations/crazytown-s3-1.jpeg" data-caption="Crazytown Saison 3" />
     </div>
-    <h1>CHAQUE GRAIN DE SABLE COMPTE</h1>
+    <img src="https://sandboxbt.com/assets/slogan.svg" alt="Chaque Grain de sable Compte" class="slogan"/>
     <div class="caption" id="caption">Crazytown Saison 2</div>
     <div class="dots" id="dots"></div>
   </section>
