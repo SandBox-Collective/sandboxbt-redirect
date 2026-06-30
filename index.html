@@ -1643,6 +1643,17 @@
             .stat-card { padding: 1.5rem 1rem; }
             .stat-number { font-size: clamp(1.5rem, 9vw, 2.2rem); }
             .clients-grid  { grid-template-columns: 1fr 1fr; }
+            .client-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 1.1rem 0.6rem;
+                gap: 0.5rem;
+            }
+            .client-info { min-width: 0; width: 100%; }
+            .client-name { font-size: 0.78rem; white-space: normal; }
+            .client-platform { font-size: 0.55rem; }
+            .client-avatar { width: 40px; height: 40px; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .galerie-grid  { grid-template-columns: 1fr 1fr; }
             /* Galerie : item orphelin détecté par JS */
@@ -1657,7 +1668,7 @@
 ============================================================ -->
 <nav id="nav">
     <a href="#hero">
-        <img src="./images/logo-sb.png" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
+        <img src="./images/logos/logo-sb.webp" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
              alt="SANDBOX" class="nav-logo">
     </a>
     <ul class="nav-links" id="nav-links">
@@ -1683,56 +1694,56 @@
     <div class="hero-columns">
         <!-- Col 1 — up -->
         <div class="hero-col">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png" alt="Cité des Glaces III — build minecraft SANDBOX">
-            <img src="./images/arbre%20mystique%20fer%20a%20cheval.jpg" alt="Arbre organique minecraft — build team SANDBOX">
-            <img src="./images/Projet%20Citadelle.jpg" alt="La Citadelle — build minecraft pour serveur survie RP">
-            <img src="./images/temple%20minautore.jpg" alt="Temple du minotaure — construction minecraft SANDBOX">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png" alt="Cité de l'Artisanat — lobby minecraft TheGuill84">
+            <img src="./images/builds/cite-glaces-panorama.webp" alt="Cité des Glaces III — build minecraft SANDBOX">
+            <img src="./images/builds/arbre-mystique.webp" alt="Arbre organique minecraft — build team SANDBOX">
+            <img src="./images/builds/citadelle.webp" alt="La Citadelle — build minecraft pour serveur survie RP">
+            <img src="./images/builds/temple-minotaure.webp" alt="Temple du minotaure — construction minecraft SANDBOX">
+            <img src="./images/builds/cite-artisanat-place.webp" alt="Cité de l'Artisanat — lobby minecraft TheGuill84">
             <!-- repeat for seamless loop -->
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png" alt="">
-            <img src="./images/arbre%20mystique%20fer%20a%20cheval.jpg" alt="">
-            <img src="./images/Projet%20Citadelle.jpg" alt="">
-            <img src="./images/temple%20minautore.jpg" alt="">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png" alt="">
+            <img src="./images/builds/cite-glaces-panorama.webp" alt="">
+            <img src="./images/builds/arbre-mystique.webp" alt="">
+            <img src="./images/builds/citadelle.webp" alt="">
+            <img src="./images/builds/temple-minotaure.webp" alt="">
+            <img src="./images/builds/cite-artisanat-place.webp" alt="">
         </div>
         <!-- Col 2 — down -->
         <div class="hero-col">
-            <img src="./images/crazytown-s2-1.jpeg" alt="CrazyTown Saison 2 — build minecraft pour Mastu">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png" alt="Rue de la Cité de l'Artisanat — construction minecraft">
-            <img src="./images/chat%20pott%C3%A9.jpg" alt="Modélisation 3D minecraft — SANDBOX build team">
-            <img src="./images/ile%20projet%20kohlancraft.jpg" alt="Île flottante terraforming minecraft — SANDBOX">
-            <img src="./images/oeufs%20aypierre%20QSMP.jpg" alt="Statues d'œufs QSMP pour Aypierre — SANDBOX build team">
-            <img src="./images/crazytown-s2-1.jpeg" alt="">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png" alt="">
-            <img src="./images/chat%20pott%C3%A9.jpg" alt="">
-            <img src="./images/ile%20projet%20kohlancraft.jpg" alt="">
-            <img src="./images/oeufs%20aypierre%20QSMP.jpg" alt="">
+            <img src="./images/builds/crazytown-s2-01.webp" alt="CrazyTown Saison 2 — build minecraft pour Mastu">
+            <img src="./images/builds/cite-artisanat-rue-01.webp" alt="Rue de la Cité de l'Artisanat — construction minecraft">
+            <img src="./images/builds/chat-potte.webp" alt="Modélisation 3D minecraft — SANDBOX build team">
+            <img src="./images/builds/ile-kohlancraft.webp" alt="Île flottante terraforming minecraft — SANDBOX">
+            <img src="./images/builds/qsmp-oeufs-aypierre.webp" alt="Statues d'œufs QSMP pour Aypierre — SANDBOX build team">
+            <img src="./images/builds/crazytown-s2-01.webp" alt="">
+            <img src="./images/builds/cite-artisanat-rue-01.webp" alt="">
+            <img src="./images/builds/chat-potte.webp" alt="">
+            <img src="./images/builds/ile-kohlancraft.webp" alt="">
+            <img src="./images/builds/qsmp-oeufs-aypierre.webp" alt="">
         </div>
         <!-- Col 3 — up -->
         <div class="hero-col">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png" alt="">
-            <img src="./images/tree_woman.jpg" alt="">
-            <img src="./images/crazytown-s2-2.jpeg" alt="">
-            <img src="./images/GGZqbr9X0AAOxMT.jpg" alt="">
-            <img src="./images/GvX2o6OXIAAhacI.jpg" alt="">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png" alt="">
-            <img src="./images/tree_woman.jpg" alt="">
-            <img src="./images/crazytown-s2-2.jpeg" alt="">
-            <img src="./images/GGZqbr9X0AAOxMT.jpg" alt="">
-            <img src="./images/GvX2o6OXIAAhacI.jpg" alt="">
+            <img src="./images/builds/cite-glaces-panorama-nuit.webp" alt="">
+            <img src="./images/builds/tree-woman.webp" alt="">
+            <img src="./images/builds/crazytown-s2-02.webp" alt="">
+            <img src="./images/builds/build-01.webp" alt="">
+            <img src="./images/builds/build-04.webp" alt="">
+            <img src="./images/builds/cite-glaces-panorama-nuit.webp" alt="">
+            <img src="./images/builds/tree-woman.webp" alt="">
+            <img src="./images/builds/crazytown-s2-02.webp" alt="">
+            <img src="./images/builds/build-01.webp" alt="">
+            <img src="./images/builds/build-04.webp" alt="">
         </div>
         <!-- Col 4 — down -->
         <div class="hero-col">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20bigben.png" alt="">
-            <img src="./images/GNiTOU5XgAEoH7O.jpg" alt="">
-            <img src="./images/crazytown-s3-1%20(1).jpeg" alt="">
-            <img src="./images/GPlN_pzWQAAx-1I.jpg" alt="">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20basse%20ville.png" alt="">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20bigben.png" alt="">
-            <img src="./images/GNiTOU5XgAEoH7O.jpg" alt="">
-            <img src="./images/crazytown-s3-1%20(1).jpeg" alt="">
-            <img src="./images/GPlN_pzWQAAx-1I.jpg" alt="">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20basse%20ville.png" alt="">
+            <img src="./images/builds/cite-artisanat-bigben.webp" alt="">
+            <img src="./images/builds/build-03.webp" alt="">
+            <img src="./images/builds/crazytown-s3-01.webp" alt="">
+            <img src="./images/builds/build-02.webp" alt="">
+            <img src="./images/builds/cite-artisanat-basse-ville.webp" alt="">
+            <img src="./images/builds/cite-artisanat-bigben.webp" alt="">
+            <img src="./images/builds/build-03.webp" alt="">
+            <img src="./images/builds/crazytown-s3-01.webp" alt="">
+            <img src="./images/builds/build-02.webp" alt="">
+            <img src="./images/builds/cite-artisanat-basse-ville.webp" alt="">
         </div>
     </div>
 
@@ -1754,7 +1765,7 @@
 
     <div class="hero-content" id="hero-content">
         <h1 class="sr-only">SANDBOX Build Team — Construction Minecraft Française | CrazyTown Mastu, Terraforming, Modélisation 3D</h1>
-        <img src="./images/logo-sb.png" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
+        <img src="./images/logos/logo-sb.webp" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
              alt="Logo SANDBOX Build Team — Collectif Minecraft Français" class="hero-logo">
         <p class="hero-eyebrow">Collectif Minecraft Français</p>
         <p class="hero-sub">Construire · Créer · Marquer les esprits</p>
@@ -1828,10 +1839,10 @@
 
             <!-- CrazyTown S2 -->
             <div class="projet-card reveal"
-               data-images='["https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg","./images/crazytown-s2-1.jpeg","./images/crazytown-s2-2.jpeg","./images/crazytown-s2-5.jpg"]'>
+               data-images='["https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg","./images/builds/crazytown-s2-01.webp","./images/builds/crazytown-s2-02.webp","./images/builds/crazytown-s2-05.webp"]'>
                 <a class="projet-thumb" href="https://www.youtube.com/watch?v=JB10Gb0Vpys&list=PLuBLm56FrsBWGukvrg3DB6T4JxGeMjzDy" target="_blank" rel="noopener">
                     <img src="https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg"
-                         onerror="this.src='./images/crazytown-s2-1.jpeg'"
+                         onerror="this.src='./images/builds/crazytown-s2-01.webp'"
                          alt="CrazyTown Saison 2">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
@@ -1851,10 +1862,10 @@
 
             <!-- CrazyTown S3 -->
             <div class="projet-card reveal"
-               data-images='["https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg","./images/crazytown-s3-1%20(1).jpeg","./images/crazytown-s2-5.jpg"]'>
+               data-images='["https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg","./images/builds/crazytown-s3-01.webp","./images/builds/crazytown-s2-05.webp"]'>
                 <a class="projet-thumb" href="https://www.youtube.com/watch?v=AKrOH_lFJjM&list=PLVP9lGfVZgtRJQ527-2LODTAGDoezVAXp" target="_blank" rel="noopener">
                     <img src="https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg"
-                         onerror="this.src='./images/crazytown-s3-1%20(1).jpeg'"
+                         onerror="this.src='./images/builds/crazytown-s3-01.webp'"
                          alt="CrazyTown Saison 3">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
@@ -1893,9 +1904,9 @@
 
             <!-- Cité de l'artisanat -->
             <div class="projet-card reveal"
-               data-images='["./images/cit%C3%A9%20de%20lartisana%20cadré%20au%20milieu%20d%20elecran%20ville%20entiere.png","./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png","./images/cit%C3%A9%20de%20lartisana%20bigben.png","./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png"]'>
+               data-images='["./images/builds/cite-artisanat-ville.webp","./images/builds/cite-artisanat-place.webp","./images/builds/cite-artisanat-bigben.webp","./images/builds/cite-artisanat-rue-01.webp"]'>
                 <a class="projet-thumb" href="https://www.youtube.com/watch?v=C_FPkYgQwqg" target="_blank" rel="noopener">
-                    <img src="./images/cit%C3%A9%20de%20lartisana%20cadré%20au%20milieu%20d%20elecran%20ville%20entiere.png"
+                    <img src="./images/builds/cite-artisanat-ville.webp"
                          onerror="this.src='https://img.youtube.com/vi/C_FPkYgQwqg/maxresdefault.jpg'"
                          alt="Cité de l'artisanat">
                     <div class="projet-tags">
@@ -1912,9 +1923,9 @@
 
             <!-- Cité des glaces -->
             <div class="projet-card reveal"
-               data-images='["./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png","./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png","./images/cit%C3%A9%20des%20glaces%203%20-%20place%20du%20village.png","./images/cit%C3%A9%20des%20glaces%203%20-%20pont%20%2B%20village%20en%20fond.png"]'>
+               data-images='["./images/builds/cite-glaces-panorama.webp","./images/builds/cite-glaces-panorama-nuit.webp","./images/builds/cite-glaces-place.webp","./images/builds/cite-glaces-pont.webp"]'>
                 <a class="projet-thumb" href="https://www.youtube.com/watch?v=ypk4WvSMd0s" target="_blank" rel="noopener">
-                    <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png"
+                    <img src="./images/builds/cite-glaces-panorama.webp"
                          onerror="this.src='https://img.youtube.com/vi/ypk4WvSMd0s/maxresdefault.jpg'"
                          alt="Cité des glaces">
                     <div class="projet-tags">
@@ -1931,9 +1942,9 @@
 
             <!-- QSMP Aypierre -->
             <div class="projet-card reveal"
-               data-images='["./images/oeufs%20aypierre%20QSMP.jpg","./images/Oeuf%20dapper%20Aypierre%20qsmp.jpg","./images/Oeuf%20richas%20Aypierre%20qsmp.jpg","./images/Oeuf%20sunny%20Aypierre%20qsmp.jpg"]'>
+               data-images='["./images/builds/qsmp-oeufs-aypierre.webp","./images/builds/qsmp-oeuf-dapper.webp","./images/builds/qsmp-oeuf-richas.webp","./images/builds/qsmp-oeuf-sunny.webp"]'>
                 <a class="projet-thumb" href="https://www.youtube.com/watch?v=Q5dJMUSWKVA" target="_blank" rel="noopener">
-                    <img src="./images/oeufs%20aypierre%20QSMP.jpg"
+                    <img src="./images/builds/qsmp-oeufs-aypierre.webp"
                          onerror="this.src='https://img.youtube.com/vi/Q5dJMUSWKVA/maxresdefault.jpg'"
                          alt="QSMP Oeufs Aypierre">
                     <div class="projet-tags">
@@ -1951,7 +1962,7 @@
             <!-- Citadelle -->
             <div class="projet-card reveal">
                 <a class="projet-thumb" href="https://lacitadelle-mc.fr/" target="_blank" rel="noopener">
-                    <img src="./images/Projet%20Citadelle.jpg" alt="La Citadelle">
+                    <img src="./images/builds/citadelle.webp" alt="La Citadelle">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
                     </div>
@@ -1965,9 +1976,9 @@
 
             <!-- Laink Lucky Tools -->
             <div class="projet-card reveal"
-               data-images='["./images/laink -lucky tools models.png"]'>
+               data-images='["./images/builds/laink-lucky-tools.webp"]'>
                 <a class="projet-thumb" href="#expertise">
-                    <img src="./images/laink -lucky tools models.png" alt="Lucky Tools Items 3D">
+                    <img src="./images/builds/laink-lucky-tools.webp" alt="Lucky Tools Items 3D">
                     <div class="projet-tags">
                         <span class="ptag ptag-modelisation">Modélisation</span>
                     </div>
@@ -2007,7 +2018,7 @@
             <div class="expertise-card reveal">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/Projet%20Citadelle.jpg" alt="">
+                    <img src="./images/builds/citadelle.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-mountain"></i></div>
@@ -2019,7 +2030,7 @@
             <div class="expertise-card reveal reveal-d1">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/cité des glaces 3 - pont + village en fond.png" alt="">
+                    <img src="./images/builds/cite-glaces-pont.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-seedling"></i></div>
@@ -2031,7 +2042,7 @@
             <div class="expertise-card reveal reveal-d2">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/models examples blockbench.png" alt="">
+                    <img src="./images/builds/models-blockbench.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-cube"></i></div>
@@ -2043,7 +2054,7 @@
             <div class="expertise-card reveal">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/cauchemar poster 2.png" alt="">
+                    <img src="./images/builds/cauchemar-poster.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-puzzle-piece"></i></div>
@@ -2055,7 +2066,7 @@
             <div class="expertise-card reveal reveal-d1">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/crazytown-s2-2.jpeg" alt="">
+                    <img src="./images/builds/crazytown-s2-02.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-layer-group"></i></div>
@@ -2067,7 +2078,7 @@
             <div class="expertise-card reveal reveal-d2">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/cit%C3%A9%20de%20lartisana%20bigben.png" alt="">
+                    <img src="./images/builds/cite-artisanat-bigben.webp" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fab fa-twitch"></i></div>
@@ -2084,8 +2095,8 @@
      CTA PROJET
 ============================================================ -->
 <section class="projet-cta-section">
-    <img src="./images/bibulle.png"
-         onerror="this.src='./images/hermit_crab-render2.png'; this.onerror=null;"
+    <img src="./images/team/bibulle.webp"
+         onerror="this.src='./images/team/hermit-crab.webp'; this.onerror=null;"
          alt="" class="projet-cta-mascot">
     <div class="container">
         <div class="projet-cta-inner reveal">
@@ -2117,77 +2128,81 @@
     <div class="galerie-grid" id="galerie-grid">
         <!-- Row 1 : wide(2) + normal + normal -->
         <div class="gal-item wide" data-label="Cité des Glaces III - Panorama">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png" alt="Cité des Glaces" loading="lazy">
+            <img src="./images/builds/cite-glaces-panorama.webp" alt="Cité des Glaces" loading="lazy">
             <span class="gal-label">Cité des Glaces III - Panorama</span>
         </div>
         <div class="gal-item" data-label="CrazyTown S2 - Paradis">
-            <img src="./images/crazytown-s2-2.jpeg" alt="CrazyTown S2 Paradis" loading="lazy">
+            <img src="./images/builds/crazytown-s2-02.webp" alt="CrazyTown S2 Paradis" loading="lazy">
             <span class="gal-label">CrazyTown S2 - Paradis</span>
         </div>
         <div class="gal-item" data-label="Arbre Mystique">
-            <img src="./images/arbre%20mystique%20fer%20a%20cheval.jpg" alt="Arbre Mystique" loading="lazy">
+            <img src="./images/builds/arbre-mystique.webp" alt="Arbre Mystique" loading="lazy">
             <span class="gal-label">Arbre Mystique</span>
         </div>
         <!-- Row 2 : normal + wide(2) + normal -->
         <div class="gal-item" data-label="Organique · Chat Potté">
-            <img src="./images/chat%20pott%C3%A9.jpg" alt="Chat Potté" loading="lazy">
+            <img src="./images/builds/chat-potte.webp" alt="Chat Potté" loading="lazy">
             <span class="gal-label">Organique · Chat Potté</span>
         </div>
         <div class="gal-item wide" data-label="CrazyTown S2 - Île de Jul">
-            <img src="./images/crazytown-s2-5.jpg" alt="CrazyTown S2 Île de Jul" loading="lazy">
+            <img src="./images/builds/crazytown-s2-05.webp" alt="CrazyTown S2 Île de Jul" loading="lazy">
             <span class="gal-label">CrazyTown S2 - Île de Jul</span>
         </div>
         <div class="gal-item" data-label="Pêche aux oiseaux">
-            <img src="./images/house.jpg" alt="Pêche aux oiseaux" loading="lazy">
+            <img src="./images/builds/house.webp" alt="Pêche aux oiseaux" loading="lazy">
             <span class="gal-label">Pêche aux oiseaux</span>
         </div>
-        <!-- Row 3 : full(4) -->
-        <div class="gal-item full" data-label="Cité de l'Artisanat · Lobby">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png" alt="Cité Artisanat Lobby" loading="lazy">
+        <!-- Row 3 : normal + wide3(3) -->
+        <div class="gal-item" data-label="Arbre · Tree Woman">
+            <img src="./images/builds/tree-woman.webp" alt="Tree Woman — organique minecraft SANDBOX" loading="lazy">
+            <span class="gal-label">Arbre · Tree Woman</span>
+        </div>
+        <div class="gal-item wide3" data-label="Cité de l'Artisanat · Lobby">
+            <img src="./images/builds/cite-artisanat-place.webp" alt="Cité Artisanat Lobby" loading="lazy">
             <span class="gal-label">Cité de l'Artisanat · Lobby</span>
         </div>
         <!-- Row 4 : wide(2) animaux + sqr mandarine + normal -->
         <div class="gal-item wide" data-label="Animaux Spectraux Égyptiens">
-            <img src="./images/GvX2o6OXIAAhacI.jpg" alt="Animaux Spectraux Égyptiens" loading="lazy">
+            <img src="./images/builds/build-04.webp" alt="Animaux Spectraux Égyptiens" loading="lazy">
             <span class="gal-label">Animaux Spectraux Égyptiens</span>
         </div>
         <div class="gal-item sqr" data-label="Nature Morte - Mandarine">
-            <img src="./images/mandarine.jpg" alt="Nature Morte Mandarine" loading="lazy">
+            <img src="./images/builds/mandarine.webp" alt="Nature Morte Mandarine" loading="lazy">
             <span class="gal-label">Nature Morte - Mandarine</span>
         </div>
         <div class="gal-item" data-label="Temple Minotaure">
-            <img src="./images/temple%20minautore.jpg" alt="Temple Minotaure" loading="lazy">
+            <img src="./images/builds/temple-minotaure.webp" alt="Temple Minotaure" loading="lazy">
             <span class="gal-label">Temple Minotaure</span>
         </div>
-        <!-- Row 5 : wide(2) + normal + normal -->
-        <div class="gal-item wide" data-label="CrazyTown Saison 2">
-            <img src="./images/crazytown-s2-1.jpeg" alt="CrazyTown S2" loading="lazy">
-            <span class="gal-label">CrazyTown Saison 2</span>
-        </div>
+        <!-- Row 5 : normal + wide(2) + normal -->
         <div class="gal-item" data-label="Projet Citadelle">
-            <img src="./images/Projet%20Citadelle.jpg" alt="Citadelle" loading="lazy">
+            <img src="./images/builds/citadelle.webp" alt="Citadelle" loading="lazy">
             <span class="gal-label">Projet Citadelle</span>
         </div>
+        <div class="gal-item wide" data-label="CrazyTown Saison 2">
+            <img src="./images/builds/crazytown-s2-01.webp" alt="CrazyTown S2" loading="lazy">
+            <span class="gal-label">CrazyTown Saison 2</span>
+        </div>
         <div class="gal-item" data-label="QSMP · Oeufs Aypierre">
-            <img src="./images/oeufs%20aypierre%20QSMP.jpg" alt="QSMP Œufs" loading="lazy">
+            <img src="./images/builds/qsmp-oeufs-aypierre.webp" alt="QSMP Œufs" loading="lazy">
             <span class="gal-label">QSMP · Oeufs Aypierre</span>
         </div>
         <!-- Row 6 : full(4) -->
         <div class="gal-item full" data-label="Cité des Glaces · Nuit">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png" alt="Cité des Glaces Nuit" loading="lazy">
+            <img src="./images/builds/cite-glaces-panorama-nuit.webp" alt="Cité des Glaces Nuit" loading="lazy">
             <span class="gal-label">Cité des Glaces · Nuit</span>
         </div>
         <!-- Row 7 : normal + wide(2) + normal -->
         <div class="gal-item" data-label="Île · KohlanCraft">
-            <img src="./images/ile%20projet%20kohlancraft.jpg" alt="Île Kohlancraft" loading="lazy">
+            <img src="./images/builds/ile-kohlancraft.webp" alt="Île Kohlancraft" loading="lazy">
             <span class="gal-label">Île · KohlanCraft</span>
         </div>
         <div class="gal-item wide" data-label="Cité de l'Artisanat · Rue">
-            <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png" alt="Cité Artisanat Rue" loading="lazy">
+            <img src="./images/builds/cite-artisanat-rue-01.webp" alt="Cité Artisanat Rue" loading="lazy">
             <span class="gal-label">Cité de l'Artisanat · Rue</span>
         </div>
         <div class="gal-item" data-label="Cité des Glaces · Village">
-            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20place%20du%20village.png" alt="Cité des Glaces Village" loading="lazy">
+            <img src="./images/builds/cite-glaces-place.webp" alt="Cité des Glaces Village" loading="lazy">
             <span class="gal-label">Cité des Glaces · Village</span>
         </div>
     </div>
@@ -2531,7 +2546,7 @@
             <!-- Cyllu -->
             <div class="founder-card reveal">
                 <a class="founder-link" href="https://www.twitch.tv/cylluvt" target="_blank" title="Twitch de Cyllu">
-                    <img src="./images/cyllu.png" alt="Cyllu"
+                    <img src="./images/team/cyllu.webp" alt="Cyllu"
                          onerror="this.src='https://unavatar.io/twitch/cylluvt'">
                     <div class="founder-link-badge"><i class="fab fa-twitch"></i></div>
                 </a>
@@ -2550,7 +2565,7 @@
             <!-- LordFinn -->
             <div class="founder-card reveal reveal-d2">
                 <a class="founder-link" href="https://www.twitch.tv/lordfinn_" target="_blank" title="Twitch de LordFinn">
-                    <img src="./images/lordfinn.png" alt="LordFinn"
+                    <img src="./images/team/lordfinn.webp" alt="LordFinn"
                          onerror="this.src='https://unavatar.io/twitch/lordfinn_'">
                     <div class="founder-link-badge"><i class="fab fa-twitch"></i></div>
                 </a>
@@ -2618,7 +2633,7 @@
 <footer>
     <div class="footer-top">
         <div>
-            <img src="./images/logo-sb.png" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
+            <img src="./images/logos/logo-sb.webp" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
                  alt="SANDBOX" class="footer-logo">
             <p class="footer-tagline">
                 Collectif Minecraft Français spécialisé dans la création de mondes, d'expériences et d'événements gaming à grande échelle.<br><br>
