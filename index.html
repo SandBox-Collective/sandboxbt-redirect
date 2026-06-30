@@ -1518,6 +1518,139 @@
             .gal-item.wide, .gal-item.wide3, .gal-item.full { grid-column: span 2; aspect-ratio: 8/3; }
         }
 
+        /* ── Tarifs ── */
+        .tarifs-section {
+            background: var(--gris3);
+            padding: 100px 0;
+        }
+        .tarifs-intro {
+            color: rgba(254,252,254,0.45);
+            font-size: 0.92rem;
+            margin: 0.75rem 0 0;
+        }
+        .tarifs-grid {
+            display: flex;
+            flex-direction: column;
+            margin-top: 2.5rem;
+        }
+        .tarif-card {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            align-items: center;
+            gap: 0 1.75rem;
+            padding: 1.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            transition: padding-left 0.3s;
+            cursor: default;
+        }
+        .tarif-card:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+        /* Trait rose qui glisse de gauche au hover */
+        .tarif-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--rose);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .tarif-card:hover::before { transform: scaleY(1); }
+        .tarif-card:hover {
+            padding-left: 1.2rem;
+            background: rgba(255,255,255,0.025);
+        }
+        .tarif-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rose);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            background: rgba(215,79,129,0.08);
+            transition: background 0.25s, color 0.25s;
+        }
+        .tarif-card:hover .tarif-icon {
+            background: var(--rose);
+            color: #fff;
+        }
+        .tarif-body { min-width: 0; }
+        .tarif-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--blanc);
+            margin: 0 0 0.2rem;
+        }
+        .tarif-desc {
+            font-size: 0.83rem;
+            color: rgba(254,252,254,0.42);
+            line-height: 1.5;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tarif-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+        .tarif-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--blanc);
+            line-height: 1;
+            transition: color 0.25s;
+        }
+        .tarif-card:hover .tarif-price { color: var(--rose); }
+        .tarif-unit {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(254,252,254,0.35);
+        }
+        .tarifs-notes {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .tarif-note {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.75rem 1.2rem;
+            font-size: 0.83rem;
+            font-weight: 500;
+            border: 1px solid;
+            flex: 1;
+            min-width: 220px;
+        }
+        .tarif-note i { font-size: 0.75rem; flex-shrink: 0; }
+        .tarif-note--green {
+            color: #5cb85c;
+            border-color: rgba(92,184,92,0.25);
+            background: rgba(92,184,92,0.05);
+        }
+        .tarif-note--orange {
+            color: #e6a817;
+            border-color: rgba(230,168,23,0.25);
+            background: rgba(230,168,23,0.05);
+        }
+        @media (max-width: 640px) {
+            .tarif-card { grid-template-columns: 40px 1fr auto; gap: 0 1rem; }
+            .tarif-desc { white-space: normal; overflow: visible; text-overflow: unset; }
+            .tarif-price { font-size: 1.6rem; }
+            .tarifs-notes { flex-direction: column; }
+            .tarif-note { min-width: 0; }
+        }
+
         /* ── Contact ── */
         .contact-section {
             background: var(--gris2);
@@ -1677,6 +1810,7 @@
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#equipe">Équipe</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="nav-cta">Discord ↗</a></li>
     </ul>
@@ -2588,6 +2722,92 @@
 </section>
 
 <!-- ============================================================
+     TARIFS
+============================================================ -->
+<section class="tarifs-section" id="tarifs">
+    <div class="container">
+        <div class="section-label reveal">Transparence</div>
+        <h2 class="section-title reveal">Nos <span class="accent">Tarifs</span></h2>
+        <p class="tarifs-intro reveal">Tous nos projets font l'objet d'un devis personnalisé, basé sur ces tarifs horaires.</p>
+
+        <div class="tarifs-grid reveal">
+
+            <div class="tarif-card">
+                <div class="tarif-icon"><i class="fas fa-hammer"></i></div>
+                <div class="tarif-body">
+                    <h3 class="tarif-name">Build & Terraforming</h3>
+                    <p class="tarif-desc">Construction, décoration, terraforming et aménagement de maps.</p>
+                </div>
+                <div class="tarif-price-row">
+                    <span class="tarif-price">30</span>
+                    <span class="tarif-unit">€/h</span>
+                </div>
+            </div>
+
+            <div class="tarif-card">
+                <div class="tarif-icon"><i class="fas fa-code"></i></div>
+                <div class="tarif-body">
+                    <h3 class="tarif-name">Dev Mods, Plugins & Sys Admin</h3>
+                    <p class="tarif-desc">Développement de mods, plugins sur mesure et administration système.</p>
+                </div>
+                <div class="tarif-price-row">
+                    <span class="tarif-price">40</span>
+                    <span class="tarif-unit">€/h</span>
+                </div>
+            </div>
+
+            <div class="tarif-card">
+                <div class="tarif-icon"><i class="fas fa-cube"></i></div>
+                <div class="tarif-body">
+                    <h3 class="tarif-name">Modélisation & Texturing</h3>
+                    <p class="tarif-desc">Modèles 3D, pixel art et textures custom pour vos projets.</p>
+                </div>
+                <div class="tarif-price-row">
+                    <span class="tarif-price">30</span>
+                    <span class="tarif-unit">€/h</span>
+                </div>
+            </div>
+
+            <div class="tarif-card">
+                <div class="tarif-icon"><i class="fas fa-dice"></i></div>
+                <div class="tarif-body">
+                    <h3 class="tarif-name">Game Design</h3>
+                    <p class="tarif-desc">Conception de mécaniques, règles de jeu et expériences joueurs.</p>
+                </div>
+                <div class="tarif-price-row">
+                    <span class="tarif-price">25</span>
+                    <span class="tarif-unit">€/h</span>
+                </div>
+            </div>
+
+            <div class="tarif-card">
+                <div class="tarif-icon"><i class="fas fa-headset"></i></div>
+                <div class="tarif-body">
+                    <h3 class="tarif-name">Administration en flux tendu</h3>
+                    <p class="tarif-desc">Suivi et gestion de serveur en temps réel lors d'événements live.</p>
+                </div>
+                <div class="tarif-price-row">
+                    <span class="tarif-price">15</span>
+                    <span class="tarif-unit">€/h</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tarifs-notes reveal">
+            <div class="tarif-note tarif-note--green">
+                <i class="fas fa-tag"></i>
+                <span>Remise de <strong>5%</strong> possible si le projet est réalisable en live</span>
+            </div>
+            <div class="tarif-note tarif-note--orange">
+                <i class="fas fa-bolt"></i>
+                <span>Délai court ou projet urgent : tarif sur devis</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
      CONTACT
 ============================================================ -->
 <section class="contact-section" id="contact">
@@ -2653,6 +2873,7 @@
                 <li><a href="#clients">Clients</a></li>
                 <li><a href="#communaute">Communauté</a></li>
                 <li><a href="#equipe">Équipe</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
             </ul>
         </div>
 
