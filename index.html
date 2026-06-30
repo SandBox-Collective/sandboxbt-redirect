@@ -472,12 +472,48 @@
         ===================================================== */
         .projets-section { background: var(--gris2); padding: 100px 0; }
 
-        .projets-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        /* ── Projets Carousel ── */
+        .projets-carousel-wrap { position: relative; padding: 0 0 2rem; }
+        .projets-carousel { overflow: hidden; }
+        .projets-track {
+            display: flex;
             gap: 2px;
             background: rgba(0,0,0,0.4);
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .pcarr-btn {
+            position: absolute;
+            top: calc(50% - 1rem);
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(24,25,28,0.88);
+            border: 1px solid rgba(255,255,255,0.08);
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            color: var(--blanc);
+            font-size: 0.9rem;
+            transition: background 0.2s, opacity 0.3s;
+        }
+        .pcarr-btn:hover { background: var(--rose); border-color: var(--rose); }
+        .pcarr-prev { left: -22px; }
+        .pcarr-next { right: -22px; }
+        .pcarr-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.8rem;
+        }
+        .pcarr-dot {
+            width: 8px; height: 8px;
+            border-radius: 0;
+            background: rgba(254,252,254,0.2);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.25s, transform 0.25s;
+        }
+        .pcarr-dot.active { background: var(--rose); transform: scale(1.4); }
 
         .projet-card {
             background: var(--gris3);
@@ -1374,7 +1410,8 @@
            RESPONSIVE
         ===================================================== */
         @media (max-width: 1100px) {
-            .projets-grid  { grid-template-columns: repeat(2, 1fr); }
+            .pcarr-prev { left: -18px; }
+            .pcarr-next { right: -18px; }
             .clients-grid  { grid-template-columns: repeat(3, 1fr); }
             .atelier-layout { grid-template-columns: 1fr; gap: 3rem; }
             .footer-top    { grid-template-columns: 1fr 1fr; }
@@ -1485,7 +1522,9 @@
             .nav-links { display: none; }
             .hamburger { display: flex; }
             .container { padding: 0 1.5rem; }
-            .projets-grid  { grid-template-columns: 1fr; }
+            .pcarr-btn { width: 36px; height: 36px; font-size: 0.8rem; }
+            .pcarr-prev { left: 4px; }
+            .pcarr-next { right: 4px; }
             .expertise-grid { grid-template-columns: 1fr; }
             .clients-grid  { grid-template-columns: repeat(2, 1fr); }
             .equipe-grid   { grid-template-columns: 1fr; max-width: 400px; }
@@ -1689,7 +1728,10 @@
     </div>
 
     <div class="container">
-        <div class="projets-grid">
+        <div class="projets-carousel-wrap">
+            <button class="pcarr-btn pcarr-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <div class="projets-carousel">
+                <div class="projets-track">
 
             <!-- CrazyTown S2 -->
             <a class="projet-card reveal"
@@ -1868,7 +1910,11 @@
                 </div>
             </a>
 
-        </div>
+                </div><!-- /projets-track -->
+            </div><!-- /projets-carousel -->
+            <button class="pcarr-btn pcarr-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <div class="pcarr-dots"></div>
+        </div><!-- /projets-carousel-wrap -->
     </div>
 </section>
 
@@ -2745,6 +2791,99 @@
             setTimeout(() => { img.src = originalSrc; idx = 0; }, 700);
         });
     });
+
+    /* ─── Projets Carousel ───────────────────────────────────── */
+    (function () {
+        const wrap     = document.querySelector('.projets-carousel-wrap');
+        if (!wrap) return;
+        const carousel = wrap.querySelector('.projets-carousel');
+        const track    = wrap.querySelector('.projets-track');
+        const cards    = [...track.querySelectorAll('.projet-card')];
+        const dotsWrap = wrap.querySelector('.pcarr-dots');
+        const btnPrev  = wrap.querySelector('.pcarr-prev');
+        const btnNext  = wrap.querySelector('.pcarr-next');
+
+        let current = 0;
+        let autoTimer;
+
+        function perView() { return window.innerWidth <= 640 ? 1 : 3; }
+        function totalPages() { return Math.ceil(cards.length / perView()); }
+
+        function setCardWidths() {
+            const pv  = perView();
+            const gap = 2;
+            const cw  = Math.floor((carousel.offsetWidth - gap * (pv - 1)) / pv);
+            cards.forEach(c => { c.style.width = cw + 'px'; c.style.flexShrink = '0'; });
+        }
+
+        function getOffset(page) {
+            const pv  = perView();
+            const gap = 2;
+            const cw  = Math.floor((carousel.offsetWidth - gap * (pv - 1)) / pv);
+            return page * pv * (cw + gap);
+        }
+
+        function buildDots() {
+            dotsWrap.innerHTML = '';
+            for (let i = 0; i < totalPages(); i++) {
+                const d = document.createElement('button');
+                d.className = 'pcarr-dot' + (i === current ? ' active' : '');
+                d.setAttribute('aria-label', 'Page ' + (i + 1));
+                d.addEventListener('click', () => { goTo(i); resetTimer(); });
+                dotsWrap.appendChild(d);
+            }
+        }
+
+        function goTo(idx) {
+            const pages = totalPages();
+            current = ((idx % pages) + pages) % pages;
+            track.style.transform = 'translateX(-' + getOffset(current) + 'px)';
+            dotsWrap.querySelectorAll('.pcarr-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+            });
+            btnPrev.style.opacity = current === 0 ? '0.35' : '1';
+            btnNext.style.opacity = current === pages - 1 ? '0.35' : '1';
+        }
+
+        function resetTimer() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function () {
+                goTo(current + 1 < totalPages() ? current + 1 : 0);
+            }, 4500);
+        }
+
+        btnPrev.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+        btnNext.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+        wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        wrap.addEventListener('mouseleave', resetTimer);
+
+        // Touch swipe
+        let startX = 0;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) { dx < 0 ? goTo(current + 1) : goTo(current - 1); resetTimer(); }
+        });
+
+        // Resize
+        let resizeT;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeT);
+            resizeT = setTimeout(() => {
+                setCardWidths();
+                buildDots();
+                current = 0;
+                goTo(0);
+            }, 150);
+        });
+
+        // Init
+        setCardWidths();
+        buildDots();
+        goTo(0);
+        resetTimer();
+    })();
 
     /* ─── Lightbox ───────────────────────────────────────────── */
     const lightbox      = document.getElementById('lightbox');
