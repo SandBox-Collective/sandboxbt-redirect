@@ -1533,7 +1533,8 @@
             .hero-columns  { grid-template-columns: repeat(2, 1fr); }
             .hero-col:nth-child(3),
             .hero-col:nth-child(4) { display: none; }
-            .stat-number { font-size: clamp(2rem, 8vw, 3rem); }
+            .stat-number { font-size: clamp(1.8rem, 7vw, 3rem); }
+            .stat-card { padding: 2rem 1.4rem; }
             /* Players marquee : 3 lignes + items resserrés */
             .players-marquee-wrap { margin-top: 2rem; }
             .player-chip { padding: 0 1rem; }
@@ -1550,6 +1551,8 @@
 
         @media (max-width: 520px) {
             .stats-grid    { grid-template-columns: 1fr 1fr; }
+            .stat-card { padding: 1.5rem 1rem; }
+            .stat-number { font-size: clamp(1.5rem, 9vw, 2.2rem); }
             .clients-grid  { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .galerie-grid  { grid-template-columns: 1fr 1fr; }
