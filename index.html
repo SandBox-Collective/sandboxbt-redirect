@@ -405,6 +405,20 @@
         .manifeste-statement em     { color: var(--jaune); font-style: normal; }
         .manifeste-statement strong { color: var(--rose); font-weight: 800; }
 
+        .manifeste-punchline {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            color: var(--blanc);
+            border-left: 3px solid var(--rose);
+            padding: 0.6rem 0 0.6rem 1.2rem;
+            margin-top: 2rem;
+            opacity: 0.95;
+        }
+        .manifeste-punchline span { color: var(--rose); }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -466,7 +480,8 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .projet-thumb {
@@ -533,7 +548,7 @@
         }
         .projet-play i { font-size: 1.1rem; color: var(--blanc); }
 
-        .projet-body { padding: 1.5rem 1.8rem 2rem; }
+        .projet-body { padding: 1.5rem 1.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
 
         .projet-client {
             font-family: 'Space Grotesk', sans-serif;
@@ -562,30 +577,82 @@
             color: rgba(254,252,254,0.55);
         }
 
-        .projet-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.9rem 1.8rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            background: rgba(0,0,0,0.2);
+        .projet-arrow {
+            display: block;
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--rose);
+            margin-top: auto;
+            padding-top: 0.8rem;
+            transition: transform 0.25s;
         }
-
-        .projet-type {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.62rem;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(254,252,254,0.35);
-        }
-
-        .projet-arrow { font-size: 0.8rem; color: var(--rose); transition: transform 0.25s; }
-        .projet-card:hover .projet-arrow { transform: translateX(4px); }
+        .projet-card:hover .projet-arrow { transform: translateX(5px); }
 
         /* =====================================================
            GALERIE
         ===================================================== */
+        /* ── CTA Projet ── */
+        .projet-cta-section {
+            background: var(--bordeaux);
+            padding: 28px 0;
+        }
+        .projet-cta-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .projet-cta-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin: 0 0 0.3rem;
+        }
+        .projet-cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 800;
+            color: var(--blanc);
+            margin: 0;
+        }
+        .projet-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blanc);
+            color: var(--bordeaux);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 0.6rem 1.4rem;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .projet-cta-btn:hover {
+            background: var(--jaune);
+            color: var(--gris3);
+            transform: translateY(-2px);
+        }
+        .projet-cta-btn--mail {
+            background: transparent;
+            color: var(--blanc);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .projet-cta-btn--mail:hover {
+            background: var(--jaune);
+            color: var(--gris3);
+            border-color: transparent;
+        }
+        .projet-cta-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
         .galerie-section { background: var(--gris); overflow: hidden; padding: 100px 0 0; }
 
         .galerie-grid {
@@ -597,18 +664,25 @@
         }
 
         .gal-item {
-            overflow: hidden;
             position: relative;
-            aspect-ratio: 4/3;
+            overflow: hidden;
+            height: 100%;
+            padding-bottom: 75%; /* 4:3 */
             background: var(--gris3);
         }
-        .gal-item.wide  { grid-column: span 2; aspect-ratio: 8/3; }
-        .gal-item.sqr   { aspect-ratio: 1; }
+        .gal-item.wide  { grid-column: span 2; padding-bottom: 37.5%; /* 8:3 */ }
+        .gal-item.wide3 { grid-column: span 3; padding-bottom: 33.33%; /* 12:4 */ }
+        .gal-item.full  { grid-column: span 4; padding-bottom: 28.57%; /* 21:6 */ }
+        .gal-item.sqr   { padding-bottom: 100%; }
 
         .gal-item { cursor: zoom-in; }
         .gal-item img {
-            width: 100%; height: 100%;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: transform 0.55s, filter 0.4s;
             filter: saturate(0.82) brightness(0.88);
         }
@@ -679,7 +753,15 @@
         /* =====================================================
            EXPERTISE
         ===================================================== */
-        .expertise-section { background: var(--gris3); padding-top: 120px; }
+        .expertise-section { background: var(--gris3); padding-top: 120px; position: relative; overflow: hidden; }
+
+        /* ---- Bucket deco ---- */
+        .bucket-deco {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
 
         .expertise-grid {
             display: grid;
@@ -781,7 +863,7 @@
             width: max-content;
             animation: marquee 30s linear infinite;
         }
-        .marquee-track:hover { animation-play-state: paused; }
+        /* marquee never pauses on hover */
 
         @keyframes marquee {
             from { transform: translateX(0); }
@@ -791,8 +873,8 @@
         .marquee-item {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
-            padding: 0 2.5rem;
+            gap: 2rem;
+            padding: 0 1.5rem;
             white-space: nowrap;
         }
 
@@ -897,7 +979,7 @@
         /* =====================================================
            COMMUNAUTÉ
         ===================================================== */
-        .communaute-section { background: var(--gris); padding: 100px 0; overflow: hidden; }
+        .communaute-section { background: var(--gris); padding: 100px 0; overflow: hidden; position: relative; }
 
         .players-marquee-wrap { overflow: hidden; margin-top: 4rem; }
 
@@ -911,7 +993,7 @@
             animation-duration: 55s;
             margin-top: 1rem;
         }
-        .players-track:hover, .players-track-reverse:hover { animation-play-state: paused; }
+        /* communauté marquee never pauses on hover */
 
         .player-chip {
             display: inline-flex;
@@ -954,7 +1036,24 @@
         /* =====================================================
            ATELIER
         ===================================================== */
-        .atelier-section { background: var(--gris2); }
+        .atelier-section {
+            background: var(--gris2);
+            position: relative;
+        }
+        .atelier-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-25 -27 138.33 145.22'%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-25 -27 138.33 145.22'%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z'/%3E%3C/svg%3E");
+            background-size: 140px 140px, 140px 140px;
+            background-position: 0 0, 70px 70px;
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .atelier-section > * { position: relative; z-index: 1; }
 
         .atelier-layout {
             display: grid;
@@ -1037,7 +1136,7 @@
         /* =====================================================
            ÉQUIPE
         ===================================================== */
-        .equipe-section { background: var(--gris3); }
+        .equipe-section { background: var(--gris3); position: relative; overflow: hidden; }
 
         .equipe-grid {
             display: grid;
@@ -1329,8 +1428,91 @@
             .expertise-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-top    { grid-template-columns: 1fr; }
             .galerie-grid  { grid-template-columns: repeat(2, 1fr); }
-            .gal-item.wide { grid-column: span 1; aspect-ratio: 4/3; }
+            .gal-item.wide, .gal-item.wide3, .gal-item.full { grid-column: span 2; aspect-ratio: 8/3; }
         }
+
+        /* ── Contact ── */
+        .contact-section {
+            background: var(--gris2);
+            padding: 100px 0;
+        }
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .contact-sub {
+            color: rgba(254,252,254,0.55);
+            font-size: 0.95rem;
+            margin: 1rem 0 1.5rem;
+            line-height: 1.6;
+        }
+        .contact-discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--rose);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-discord-link:hover { color: var(--jaune); }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .contact-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .contact-field label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(254,252,254,0.45);
+        }
+        .contact-field input,
+        .contact-field textarea {
+            background: var(--gris3);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--blanc);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            resize: none;
+        }
+        .contact-field input:focus,
+        .contact-field textarea:focus {
+            border-color: var(--rose);
+        }
+        .contact-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            align-self: flex-start;
+            background: var(--rose);
+            color: var(--blanc);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .contact-submit:hover { background: var(--bordeaux); transform: translateY(-2px); }
+        .contact-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .contact-success, .contact-error { display: none; font-size: 0.88rem; margin: 0; }
+        .contact-success { color: #6fcf97; }
+        .contact-error   { color: #eb5757; }
 
         @media (max-width: 768px) {
             section { padding: 70px 0; }
@@ -1416,7 +1598,7 @@
         <!-- Col 3 — up -->
         <div class="hero-col">
             <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png" alt="">
-            <img src="./images/hermit_crab-render2.png" alt="">
+            <img src="./images/tree_woman.jpg" alt="">
             <img src="./images/crazytown-s2-2.jpeg" alt="">
             <img src="./images/GGZqbr9X0AAOxMT.jpg" alt="">
             <img src="./images/GvX2o6OXIAAhacI.jpg" alt="">
@@ -1445,6 +1627,18 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-grain"></div>
 
+    <!-- Bucket deco — hero top-right -->
+    <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
+         style="width:clamp(280px,38vw,520px);top:-6%;right:-5%;transform:rotate(18deg);opacity:0.09;color:#fff;">
+        <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
+    </svg>
+
+    <!-- Bucket deco — hero bottom-left (180°, smaller) -->
+    <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
+         style="width:clamp(180px,24vw,340px);bottom:-4%;left:-4%;transform:rotate(198deg);opacity:0.09;color:#fff;">
+        <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
+    </svg>
+
     <div class="hero-content" id="hero-content">
         <img src="./images/logo-sb.png" onerror="this.src='https://sandboxbt.com/assets/logo-sb-blackbg.svg'"
              alt="Logo SANDBOX" class="hero-logo">
@@ -1467,17 +1661,25 @@
 ============================================================ -->
 <section class="manifeste" id="manifeste">
     <div class="container">
+        <!-- Bucket deco — manifeste -->
+        <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
+             style="width:clamp(180px,22vw,300px);top:3rem;left:-3%;transform:rotate(-15deg);opacity:0.1;color:var(--rose);z-index:0;">
+            <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
+        </svg>
+
         <div class="section-label reveal">Notre histoire</div>
         <p class="manifeste-statement reveal">
-            <em>13 ans</em> à construire des mondes sur Minecraft.<br>
-            Des créations vues par <strong>des millions de gens</strong>,<br>
-            un collectif né d'une passion partagée pour faire encore mieux.
+            <em>13 ans</em> de passion, des mondes construits bloc par bloc, et une envie qui ne s'est jamais calmée.<br>
+            <span style="color: var(--rose);">SANDBOX</span>, c'est deux amis entourés d'un réseau de créatifs prêt à concrétiser vos projets.
         </p>
+        <div class="manifeste-punchline reveal">
+            Un studio à taille humaine,<br>pour des projets à taille <span>démesurée</span>.
+        </div>
 
         <div class="stats-grid">
             <div class="stat-card reveal">
-                <span class="stat-number" data-target="10" data-suffix="M+">0</span>
-                <p class="stat-desc">Vues générées</p>
+                <span class="stat-number" data-target="100" data-suffix="M+">0</span>
+                <p class="stat-desc">Vues sur nos projets</p>
             </div>
             <div class="stat-card reveal reveal-d1">
                 <span class="stat-number" data-target="15" data-suffix="+">0</span>
@@ -1488,8 +1690,8 @@
                 <p class="stat-desc">D'expérience</p>
             </div>
             <div class="stat-card reveal reveal-d3">
-                <span class="stat-number" data-target="2" data-suffix=" ans">0</span>
-                <p class="stat-desc">Collectif fondé</p>
+                <span class="stat-number" data-target="2023" data-suffix="">0</span>
+                <p class="stat-desc">DAnnée de création</p>
             </div>
         </div>
     </div>
@@ -1518,6 +1720,8 @@
                          alt="CrazyTown Saison 2">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
+                        <span class="ptag ptag-mods">Moding</span>
+                        <span class="ptag ptag-modelisation">Modélisation</span>
                         <span class="ptag ptag-evenementiel">Événementiel</span>
                         <span class="ptag ptag-rp">RP</span>
                     </div>
@@ -1527,9 +1731,6 @@
                     <p class="projet-client">Mastu</p>
                     <h3 class="projet-title">CrazyTown Saison 2</h3>
                     <p class="projet-desc">Carte RP construite de A à Z pour Mastu. Rues, bâtiments, mécaniques d'events : on a posé chaque bloc, chaque animé, pour des centaines de milliers de viewers en direct.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Map · Événements · RP</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1556,9 +1757,6 @@
                     <p class="projet-client">Mastu</p>
                     <h3 class="projet-title">CrazyTown Saison 3</h3>
                     <p class="projet-desc">La suite, en encore plus grand. Mods exclusifs, modèles 3D, laser game, boss custom. Tout pensé, tout construit ensemble par l'équipe SANDBOX.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Map · Mods · 3D · RP</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1571,6 +1769,8 @@
                     <img src="https://img.youtube.com/vi/J4Nqiip9jFg/maxresdefault.jpg" alt="Cauchemar Sora">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
+                        <span class="ptag ptag-mods">Moding</span>
+                        <span class="ptag ptag-evenementiel">Événementiel</span>
                         <span class="ptag ptag-rp">RP</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
@@ -1579,9 +1779,6 @@
                     <p class="projet-client">Sora · ChrisGames</p>
                     <h3 class="projet-title">Cauchemar Série Horreur</h3>
                     <p class="projet-desc">Série horreur scénarisée et construite pour Sora. Donjons, ambiance, narration : une carte pensée comme une vraie production vidéo.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Map · Scénario · RP</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1601,12 +1798,9 @@
                     <div class="projet-play"><i class="fas fa-play"></i></div>
                 </div>
                 <div class="projet-body">
-                    <p class="projet-client">TheGuill84 · Build uniquement</p>
+                    <p class="projet-client">TheGuill84 · Lobby &amp; Mini Jeux</p>
                     <h3 class="projet-title">Cité de l'Artisanat</h3>
                     <p class="projet-desc">Cité médiévale complète construite en prestataire. Rues, BigBen, places, basse-ville. Build pur, aucun code, maximum de soin dans chaque détail.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Construction · Décoration</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1626,12 +1820,9 @@
                     <div class="projet-play"><i class="fas fa-play"></i></div>
                 </div>
                 <div class="projet-body">
-                    <p class="projet-client">TheGuill84 · Build uniquement</p>
+                    <p class="projet-client">TheGuill84 · Lobby &amp; Mini Jeux</p>
                     <h3 class="projet-title">Cité des Glaces III</h3>
                     <p class="projet-desc">Citadelle hivernale : ponts, calèches, village enneigé. Du terraforming massif à la déco intérieure, en prestataire build pour TheGuill84.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Construction · Terraforming</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1647,7 +1838,6 @@
                          alt="QSMP Oeufs Aypierre">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
-                        <span class="ptag ptag-modelisation">Modélisation</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
                 </div>
@@ -1655,9 +1845,6 @@
                     <p class="projet-client">Aypierre · QSMP</p>
                     <h3 class="projet-title">QSMP Statues d'Œufs</h3>
                     <p class="projet-desc">Statues d'œufs sculptées pour Aypierre sur le QSMP de Quackity. Du travail organique à la main, sur l'un des serveurs les plus suivis de 2023.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Build · Organiques</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1670,16 +1857,12 @@
                     <img src="./images/Projet%20Citadelle.jpg" alt="La Citadelle">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
-                        <span class="ptag ptag-evenementiel">Événementiel</span>
                     </div>
                 </div>
                 <div class="projet-body">
                     <p class="projet-client">SANDBOX · La Citadelle</p>
                     <h3 class="projet-title">La Citadelle</h3>
                     <p class="projet-desc">Notre propre serveur survie/RP. Architecture construite ensemble, univers développé par la communauté, avec des quêtes et un lore maison.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Serveur · RP · Construction</span>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
@@ -1688,25 +1871,43 @@
             <a class="projet-card reveal reveal-d1"
                href="#expertise"
                rel="noopener"
-               data-images='["./images/pinata-screenshot.png","./images/party_controller_on.png","./images/tacopug.png"]'>
+               data-images='["./images/laink -lucky tools models.png"]'>
                 <div class="projet-thumb">
-                    <img src="./images/pinata-screenshot.png" alt="Lucky Tools Items 3D">
+                    <img src="./images/laink -lucky tools models.png" alt="Lucky Tools Items 3D">
                     <div class="projet-tags">
-                        <span class="ptag ptag-mods">Mods</span>
                         <span class="ptag ptag-modelisation">Modélisation</span>
                     </div>
                 </div>
                 <div class="projet-body">
                     <p class="projet-client">Laink</p>
                     <h3 class="projet-title">Lucky Tools · Items 2D &amp; 3D</h3>
-                    <p class="projet-desc">Items 2D et 3D créés pour le mod Lucky Tools de Laink. Modèles dessinés et texturés de A à Z, avec des designs fun et reconnaissables.</p>
-                </div>
-                <div class="projet-bottom">
-                    <span class="projet-type">Modélisation · Textures · Items</span>
+                    <p class="projet-desc">Items 2D et 3D créés pour le mod Lucky Tools de Laink. Modèles dessinés et texturés de A à Z, avec des designs ludiques, intuitifs et engageants.</p>
                     <span class="projet-arrow">→</span>
                 </div>
             </a>
 
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     CTA PROJET
+============================================================ -->
+<section class="projet-cta-section">
+    <div class="container">
+        <div class="projet-cta-inner reveal">
+            <div class="projet-cta-text">
+                <p class="projet-cta-label">Vous avez un projet ?</p>
+                <h2 class="projet-cta-title">Discutons-en ensemble !</h2>
+            </div>
+            <div class="projet-cta-actions">
+                <a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="projet-cta-btn">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+                <a href="#contact" class="projet-cta-btn projet-cta-btn--mail scroll-to-contact">
+                    <i class="fas fa-envelope"></i> Mail
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -1721,53 +1922,80 @@
     </div>
 
     <div class="galerie-grid" id="galerie-grid">
+        <!-- Row 1 : wide(2) + normal + normal -->
         <div class="gal-item wide" data-label="Cité des Glaces III - Panorama">
             <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png" alt="Cité des Glaces" loading="lazy">
             <span class="gal-label">Cité des Glaces III - Panorama</span>
+        </div>
+        <div class="gal-item" data-label="CrazyTown S2 - Paradis">
+            <img src="./images/crazytown-s2-2.jpeg" alt="CrazyTown S2 Paradis" loading="lazy">
+            <span class="gal-label">CrazyTown S2 - Paradis</span>
         </div>
         <div class="gal-item" data-label="Arbre Mystique">
             <img src="./images/arbre%20mystique%20fer%20a%20cheval.jpg" alt="Arbre Mystique" loading="lazy">
             <span class="gal-label">Arbre Mystique</span>
         </div>
+        <!-- Row 2 : normal + wide(2) + normal -->
         <div class="gal-item" data-label="Organique · Chat Potté">
             <img src="./images/chat%20pott%C3%A9.jpg" alt="Chat Potté" loading="lazy">
             <span class="gal-label">Organique · Chat Potté</span>
         </div>
-        <div class="gal-item" data-label="Projet Citadelle">
-            <img src="./images/Projet%20Citadelle.jpg" alt="Citadelle" loading="lazy">
-            <span class="gal-label">Projet Citadelle</span>
+        <div class="gal-item wide" data-label="CrazyTown S2 - Île de Jul">
+            <img src="./images/crazytown-s2-5.jpg" alt="CrazyTown S2 Île de Jul" loading="lazy">
+            <span class="gal-label">CrazyTown S2 - Île de Jul</span>
         </div>
-        <div class="gal-item" data-label="Crabe Ermite 3D">
-            <img src="./images/hermit_crab-render2.png" alt="Crabe Ermite 3D" loading="lazy">
-            <span class="gal-label">Crabe Ermite 3D</span>
+        <div class="gal-item" data-label="Pêche aux oiseaux">
+            <img src="./images/house.jpg" alt="Pêche aux oiseaux" loading="lazy">
+            <span class="gal-label">Pêche aux oiseaux</span>
         </div>
-        <div class="gal-item" data-label="Cité de l'Artisanat · Lobby">
+        <!-- Row 3 : full(4) -->
+        <div class="gal-item full" data-label="Cité de l'Artisanat · Lobby">
             <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png" alt="Cité Artisanat Lobby" loading="lazy">
             <span class="gal-label">Cité de l'Artisanat · Lobby</span>
+        </div>
+        <!-- Row 4 : wide(2) animaux + sqr mandarine + normal -->
+        <div class="gal-item wide" data-label="Animaux Spectraux Égyptiens">
+            <img src="./images/GvX2o6OXIAAhacI.jpg" alt="Animaux Spectraux Égyptiens" loading="lazy">
+            <span class="gal-label">Animaux Spectraux Égyptiens</span>
+        </div>
+        <div class="gal-item sqr" data-label="Nature Morte - Mandarine">
+            <img src="./images/mandarine.jpg" alt="Nature Morte Mandarine" loading="lazy">
+            <span class="gal-label">Nature Morte - Mandarine</span>
         </div>
         <div class="gal-item" data-label="Temple Minotaure">
             <img src="./images/temple%20minautore.jpg" alt="Temple Minotaure" loading="lazy">
             <span class="gal-label">Temple Minotaure</span>
         </div>
-        <div class="gal-item" data-label="Île · KohlanCraft">
-            <img src="./images/ile%20projet%20kohlancraft.jpg" alt="Île Kohlancraft" loading="lazy">
-            <span class="gal-label">Île · KohlanCraft</span>
+        <!-- Row 5 : wide(2) + normal + normal -->
+        <div class="gal-item wide" data-label="CrazyTown Saison 2">
+            <img src="./images/crazytown-s2-1.jpeg" alt="CrazyTown S2" loading="lazy">
+            <span class="gal-label">CrazyTown Saison 2</span>
+        </div>
+        <div class="gal-item" data-label="Projet Citadelle">
+            <img src="./images/Projet%20Citadelle.jpg" alt="Citadelle" loading="lazy">
+            <span class="gal-label">Projet Citadelle</span>
         </div>
         <div class="gal-item" data-label="QSMP · Oeufs Aypierre">
             <img src="./images/oeufs%20aypierre%20QSMP.jpg" alt="QSMP Œufs" loading="lazy">
             <span class="gal-label">QSMP · Oeufs Aypierre</span>
         </div>
-        <div class="gal-item" data-label="Cité des Glaces · Nuit">
+        <!-- Row 6 : full(4) -->
+        <div class="gal-item full" data-label="Cité des Glaces · Nuit">
             <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png" alt="Cité des Glaces Nuit" loading="lazy">
             <span class="gal-label">Cité des Glaces · Nuit</span>
         </div>
-        <div class="gal-item" data-label="Cité de l'Artisanat · Rue">
+        <!-- Row 7 : normal + wide(2) + normal -->
+        <div class="gal-item" data-label="Île · KohlanCraft">
+            <img src="./images/ile%20projet%20kohlancraft.jpg" alt="Île Kohlancraft" loading="lazy">
+            <span class="gal-label">Île · KohlanCraft</span>
+        </div>
+        <div class="gal-item wide" data-label="Cité de l'Artisanat · Rue">
             <img src="./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png" alt="Cité Artisanat Rue" loading="lazy">
             <span class="gal-label">Cité de l'Artisanat · Rue</span>
         </div>
-        <div class="gal-item" data-label="CrazyTown Saison 2">
-            <img src="./images/crazytown-s2-1.jpeg" alt="CrazyTown S2" loading="lazy">
-            <span class="gal-label">CrazyTown Saison 2</span>
+        <div class="gal-item" data-label="Cité des Glaces · Village">
+            <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20place%20du%20village.png" alt="Cité des Glaces Village" loading="lazy">
+            <span class="gal-label">Cité des Glaces · Village</span>
         </div>
     </div>
 
@@ -1783,6 +2011,13 @@
      EXPERTISE
 ============================================================ -->
 <section class="expertise-section" id="expertise">
+
+    <!-- Bucket deco — expertise -->
+    <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
+         style="width:clamp(140px,16vw,220px);top:3rem;right:-2%;transform:rotate(8deg);opacity:0.07;color:var(--jaune);">
+        <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
+    </svg>
+
     <div class="container">
         <div class="section-label reveal">Savoir-faire</div>
         <h2 class="section-title reveal">Ce qu'on <span class="accent">Fait</span></h2>
@@ -1792,7 +2027,7 @@
             <div class="expertise-card reveal">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png" alt="">
+                    <img src="./images/Projet%20Citadelle.jpg" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-mountain"></i></div>
@@ -1804,11 +2039,11 @@
             <div class="expertise-card reveal reveal-d1">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/chat%20pott%C3%A9.jpg" alt="">
+                    <img src="./images/cité des glaces 3 - pont + village en fond.png" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-seedling"></i></div>
-                    <h3 class="expertise-title">Organiques &amp; Décoration</h3>
+                    <h3 class="expertise-title">Organique &amp; Décoration</h3>
                     <p class="expertise-desc">Des sculptures organiques et dragons volants jusqu'aux petits détails innatendus au detours d'une ruelle, on ajoute de la vie et du réalisme à toutes nos créations.</p>
                 </div>
             </div>
@@ -1816,7 +2051,7 @@
             <div class="expertise-card reveal reveal-d2">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/hermit_crab-render2.png" alt="">
+                    <img src="./images/models examples blockbench.png" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-cube"></i></div>
@@ -1828,7 +2063,7 @@
             <div class="expertise-card reveal">
                 <div class="expertise-bar"></div>
                 <div class="expertise-img-wrap">
-                    <img src="./images/Projet%20Citadelle.jpg" alt="">
+                    <img src="./images/cauchemar poster 2.png" alt="">
                 </div>
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-puzzle-piece"></i></div>
@@ -2103,18 +2338,18 @@
 
         <div class="atelier-layout">
             <div>
-                <div class="atelier-badge reveal">Collectif ouvert</div>
+                <div class="atelier-badge reveal">Un collectif qui s'agrandit à vos besoins</div>
                 <p class="atelier-text reveal">
-                    L'Atelier, c'est le réseau de gens avec qui on bosse régulièrement. Des passionnés avec qui on partage la même vision du jeu, du build, de la création.
+                    La plupart de nos projets, on les gère à deux, parfois seuls. Mais quand les ambitions grandissent, on s'entoure. L'Atelier, c'est le réseau de créatifs avec lequel on travaille selon les besoins : constructeurs, développeurs, game designers, pixel artistes.
                 </p>
                 <p class="atelier-text reveal">
-                    On recrute pas sur CV. On travaille avec des gens qu'on connait, qu'on respecte, et dont on a vu le boulot. Simple comme ça.
+                    Pas une agence, pas une liste de prestataires anonymes. Des gens qu'on connait, dont on a vu le travail, et avec qui on partage la même exigence.
                 </p>
-                <div class="partner-chip reveal">NitroServ · Partenaire Hébergement</div>
+                <a class="partner-chip reveal" href="https://www.nitroserv.com/?r=0" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;cursor:pointer;">NitroServ · Partenaire Hébergement</a>
             </div>
 
             <div class="artisan-panel reveal">
-                <div class="artisan-panel-header">Les métiers de L'Atelier</div>
+                <div class="artisan-panel-header">Les savoir-faire</div>
                 <ul class="artisan-list">
                     <li class="artisan-item">Constructeur</li>
                     <li class="artisan-item">Terraformeur</li>
@@ -2188,13 +2423,51 @@
                  alt="Bibulle Mascotte SANDBOX"
                  onerror="this.src='./images/hermit_crab-render2.png'; this.onerror=null;">
             <div class="community-cta">
-                <p class="community-cta-text">Rejoins la communauté SANDBOX sur Discord</p>
+                <p class="community-cta-text">Contacte nous ou rejoins la communauté SANDBOX sur notre Discord</p>
                 <a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="btn-discord">
                     <i class="fab fa-discord"></i> Rejoindre
                 </a>
             </div>
         </div>
 
+    </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="contact-inner">
+            <div class="contact-left reveal">
+                <div class="section-label">Nous contacter</div>
+                <h2 class="section-title">Un projet ?<br><span class="accent">Écrivez-nous.</span></h2>
+                <p class="contact-sub">On est aussi disponibles sur Discord pour échanger plus vite.</p>
+                <a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="contact-discord-link">
+                    <i class="fab fa-discord"></i> Rejoindre le Discord
+                </a>
+            </div>
+            <form class="contact-form reveal reveal-d2" id="contact-form">
+                <div class="contact-field">
+                    <label for="cf-name">Nom / Pseudo</label>
+                    <input type="text" id="cf-name" name="name" placeholder="Votre nom" required>
+                </div>
+                <div class="contact-field">
+                    <label for="cf-email">Email</label>
+                    <input type="email" id="cf-email" name="email" placeholder="votre@email.com" required>
+                </div>
+                <div class="contact-field">
+                    <label for="cf-message">Votre projet</label>
+                    <textarea id="cf-message" name="message" rows="5" placeholder="Décrivez votre projet en quelques lignes..." required></textarea>
+                </div>
+                <button type="submit" class="contact-submit">
+                    <span class="contact-submit-label">Envoyer</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <p class="contact-success" id="contact-success">Message envoyé ! On vous répond rapidement.</p>
+                <p class="contact-error" id="contact-error">Une erreur s'est produite. Réessayez ou contactez-nous directement.</p>
+            </form>
+        </div>
     </div>
 </section>
 
@@ -2341,7 +2614,23 @@
     })();
 
     new IntersectionObserver(([e]) => {
-        if (!e.isIntersecting) { clearInterval(burstTimer); }
+        if (!e.isIntersecting) {
+            clearInterval(burstTimer);
+            burstTimer = null;
+        } else if (!burstTimer) {
+            burstTimer = setInterval(() => {
+                const cx = canvas.width / 2;
+                for (let i = 0; i < 2; i++) {
+                    const g  = new Grain(true);
+                    g.x      = cx + (Math.random() - 0.5) * 90;
+                    g.y      = canvas.height * 0.25 + 80 + Math.random() * 40;
+                    g.alpha  = Math.random() * 0.5 + 0.12;
+                    g.vy     = Math.random() * 1.8 + 0.7;
+                    grains.push(g);
+                }
+                if (grains.length > N + 100) grains.splice(N, 2);
+            }, 200);
+        }
     }).observe(document.getElementById('hero'));
 
     /* ─── Scroll reveal ─────────────────────────────────────── */
@@ -2465,6 +2754,47 @@
             card.style.transform = `perspective(700px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
         });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    /* ── Scroll to contact ── */
+    document.querySelector('.scroll-to-contact').addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* ── Contact form (Web3Forms — gratuit, clé sur web3forms.com) ── */
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+        e.preventDefault();
+        const form    = e.target;
+        const btn     = form.querySelector('.contact-submit');
+        const success = document.getElementById('contact-success');
+        const error   = document.getElementById('contact-error');
+        btn.disabled  = true;
+        btn.querySelector('.contact-submit-label').textContent = 'Envoi…';
+        success.style.display = 'none';
+        error.style.display   = 'none';
+        const data = {
+            access_key: '5561115d-d161-46ce-b93b-fba891d4d412',
+            name:    form.querySelector('#cf-name').value,
+            email:   form.querySelector('#cf-email').value,
+            message: form.querySelector('#cf-message').value,
+            subject: 'Nouveau projet — SANDBOX'
+        };
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const json = await res.json();
+            if (json.success) { form.reset(); success.style.display = 'block'; }
+            else { throw new Error(); }
+        } catch {
+            error.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.querySelector('.contact-submit-label').textContent = 'Envoyer';
+        }
     });
 </script>
 
