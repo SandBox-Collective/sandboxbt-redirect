@@ -519,7 +519,7 @@
             background: var(--gris3);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
+            cursor: default;
             display: flex;
             flex-direction: column;
         }
@@ -537,7 +537,7 @@
             transition: transform 0.5s ease, filter 0.4s ease, opacity 0.3s ease;
             filter: saturate(0.75) brightness(0.85);
         }
-        .projet-card:hover .projet-thumb img {
+        .projet-thumb:hover img {
             transform: scale(1.07);
             filter: saturate(1.1) brightness(1);
         }
@@ -582,7 +582,7 @@
             transition: opacity 0.3s, transform 0.3s;
             z-index: 2;
         }
-        .projet-card:hover .projet-play {
+        .projet-thumb:hover .projet-play {
             opacity: 1;
             transform: translate(-50%,-50%) scale(1);
         }
@@ -617,16 +617,6 @@
             color: rgba(254,252,254,0.55);
         }
 
-        .projet-arrow {
-            display: block;
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--rose);
-            margin-top: auto;
-            padding-top: 0.8rem;
-            transition: transform 0.25s;
-        }
-        .projet-card:hover .projet-arrow { transform: translateX(5px); }
 
         /* =====================================================
            GALERIE
@@ -1735,11 +1725,9 @@
                 <div class="projets-track">
 
             <!-- CrazyTown S2 -->
-            <a class="projet-card reveal"
-               href="https://www.youtube.com/watch?v=JB10Gb0Vpys&list=PLuBLm56FrsBWGukvrg3DB6T4JxGeMjzDy"
-               target="_blank" rel="noopener"
+            <div class="projet-card reveal"
                data-images='["https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg","./images/crazytown-s2-1.jpeg","./images/crazytown-s2-2.jpeg","./images/crazytown-s2-5.jpg"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=JB10Gb0Vpys&list=PLuBLm56FrsBWGukvrg3DB6T4JxGeMjzDy" target="_blank" rel="noopener">
                     <img src="https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg"
                          onerror="this.src='./images/crazytown-s2-1.jpeg'"
                          alt="CrazyTown Saison 2">
@@ -1751,21 +1739,18 @@
                         <span class="ptag ptag-rp">RP</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">Mastu</p>
                     <h3 class="projet-title">CrazyTown Saison 2</h3>
-                    <p class="projet-desc">Carte RP construite de A à Z pour Mastu. Rues, bâtiments, mécaniques d'events : on a posé chaque bloc, chaque animé, pour des centaines de milliers de viewers en direct.</p>
-                    <span class="projet-arrow">→</span>
+                    <p class="projet-desc">Carte RP construite de A à Z pour Mastu. Rues, bâtiments, mécaniques d'events : on a posé chaque bloc, écrit chaque ligne de code, pour des centaines de milliers de viewers en direct.</p>
                 </div>
-            </a>
+            </div>
 
             <!-- CrazyTown S3 -->
-            <a class="projet-card reveal reveal-d1"
-               href="https://www.youtube.com/watch?v=AKrOH_lFJjM&list=PLVP9lGfVZgtRJQ527-2LODTAGDoezVAXp"
-               target="_blank" rel="noopener"
+            <div class="projet-card reveal"
                data-images='["https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg","./images/crazytown-s3-1%20(1).jpeg","./images/crazytown-s2-5.jpg"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=AKrOH_lFJjM&list=PLVP9lGfVZgtRJQ527-2LODTAGDoezVAXp" target="_blank" rel="noopener">
                     <img src="https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg"
                          onerror="this.src='./images/crazytown-s3-1%20(1).jpeg'"
                          alt="CrazyTown Saison 3">
@@ -1777,20 +1762,17 @@
                         <span class="ptag ptag-rp">RP</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">Mastu</p>
                     <h3 class="projet-title">CrazyTown Saison 3</h3>
                     <p class="projet-desc">La suite, en encore plus grand. Mods exclusifs, modèles 3D, laser game, boss custom. Tout pensé, tout construit ensemble par l'équipe SANDBOX.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- Cauchemar Sora -->
-            <a class="projet-card reveal reveal-d2"
-               href="https://www.youtube.com/watch?v=J4Nqiip9jFg"
-               target="_blank" rel="noopener">
-                <div class="projet-thumb">
+            <div class="projet-card reveal">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=J4Nqiip9jFg" target="_blank" rel="noopener">
                     <img src="https://img.youtube.com/vi/J4Nqiip9jFg/maxresdefault.jpg" alt="Cauchemar Sora">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
@@ -1799,21 +1781,18 @@
                         <span class="ptag ptag-rp">RP</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">Sora · ChrisGames</p>
                     <h3 class="projet-title">Cauchemar Série Horreur</h3>
                     <p class="projet-desc">Série horreur scénarisée et construite pour Sora. Donjons, ambiance, narration : une carte pensée comme une vraie production vidéo.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- Cité de l'artisanat -->
-            <a class="projet-card reveal"
-               href="https://www.youtube.com/watch?v=C_FPkYgQwqg"
-               target="_blank" rel="noopener"
+            <div class="projet-card reveal"
                data-images='["./images/cit%C3%A9%20de%20lartisana%20cadré%20au%20milieu%20d%20elecran%20ville%20entiere.png","./images/cit%C3%A9%20de%20lartisana%20lobby%20place.png","./images/cit%C3%A9%20de%20lartisana%20bigben.png","./images/cit%C3%A9%20de%20lartisana%20lobby%20rue%20de%20la%20cit%C3%A9%201.png"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=C_FPkYgQwqg" target="_blank" rel="noopener">
                     <img src="./images/cit%C3%A9%20de%20lartisana%20cadré%20au%20milieu%20d%20elecran%20ville%20entiere.png"
                          onerror="this.src='https://img.youtube.com/vi/C_FPkYgQwqg/maxresdefault.jpg'"
                          alt="Cité de l'artisanat">
@@ -1821,21 +1800,18 @@
                         <span class="ptag ptag-build">Build</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">TheGuill84 · Lobby &amp; Mini Jeux</p>
                     <h3 class="projet-title">Cité de l'Artisanat</h3>
                     <p class="projet-desc">Cité médiévale complète construite en prestataire. Rues, BigBen, places, basse-ville. Build pur, aucun code, maximum de soin dans chaque détail.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- Cité des glaces -->
-            <a class="projet-card reveal reveal-d1"
-               href="https://www.youtube.com/watch?v=ypk4WvSMd0s"
-               target="_blank" rel="noopener"
+            <div class="projet-card reveal"
                data-images='["./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png","./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full%20de%20nuit.png","./images/cit%C3%A9%20des%20glaces%203%20-%20place%20du%20village.png","./images/cit%C3%A9%20des%20glaces%203%20-%20pont%20%2B%20village%20en%20fond.png"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=ypk4WvSMd0s" target="_blank" rel="noopener">
                     <img src="./images/cit%C3%A9%20des%20glaces%203%20-%20panorama%20full.png"
                          onerror="this.src='https://img.youtube.com/vi/ypk4WvSMd0s/maxresdefault.jpg'"
                          alt="Cité des glaces">
@@ -1843,21 +1819,18 @@
                         <span class="ptag ptag-build">Build</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">TheGuill84 · Lobby &amp; Mini Jeux</p>
                     <h3 class="projet-title">Cité des Glaces III</h3>
                     <p class="projet-desc">Citadelle hivernale : ponts, calèches, village enneigé. Du terraforming massif à la déco intérieure, en prestataire build pour TheGuill84.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- QSMP Aypierre -->
-            <a class="projet-card reveal reveal-d2"
-               href="https://www.youtube.com/watch?v=Q5dJMUSWKVA"
-               target="_blank" rel="noopener"
+            <div class="projet-card reveal"
                data-images='["./images/oeufs%20aypierre%20QSMP.jpg","./images/Oeuf%20dapper%20Aypierre%20qsmp.jpg","./images/Oeuf%20richas%20Aypierre%20qsmp.jpg","./images/Oeuf%20sunny%20Aypierre%20qsmp.jpg"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=Q5dJMUSWKVA" target="_blank" rel="noopener">
                     <img src="./images/oeufs%20aypierre%20QSMP.jpg"
                          onerror="this.src='https://img.youtube.com/vi/Q5dJMUSWKVA/maxresdefault.jpg'"
                          alt="QSMP Oeufs Aypierre">
@@ -1865,51 +1838,44 @@
                         <span class="ptag ptag-build">Build</span>
                     </div>
                     <div class="projet-play"><i class="fas fa-play"></i></div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">Aypierre · QSMP</p>
                     <h3 class="projet-title">QSMP Statues d'Œufs</h3>
                     <p class="projet-desc">Statues d'œufs sculptées pour Aypierre pour son aventure sur le serveur QSMP de Quackity. Du travail organique à la main réalisé en live, pour le serveurs minecraft le plus suivis au monde de 2023.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- Citadelle -->
-            <a class="projet-card reveal"
-               href="https://lacitadelle-mc.fr/"
-               target="_blank" rel="noopener">
-                <div class="projet-thumb">
+            <div class="projet-card reveal">
+                <a class="projet-thumb" href="https://lacitadelle-mc.fr/" target="_blank" rel="noopener">
                     <img src="./images/Projet%20Citadelle.jpg" alt="La Citadelle">
                     <div class="projet-tags">
                         <span class="ptag ptag-build">Build</span>
                     </div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">La Citadelle · Lobby</p>
                     <h3 class="projet-title">La Citadelle</h3>
                     <p class="projet-desc">Construction intégrale des bâtiments de La Citadelle et terraforming des îles volantes pour ce serveur survie/RP communautaire.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
             <!-- Laink Lucky Tools -->
-            <a class="projet-card reveal reveal-d1"
-               href="#expertise"
-               rel="noopener"
+            <div class="projet-card reveal"
                data-images='["./images/laink -lucky tools models.png"]'>
-                <div class="projet-thumb">
+                <a class="projet-thumb" href="#expertise">
                     <img src="./images/laink -lucky tools models.png" alt="Lucky Tools Items 3D">
                     <div class="projet-tags">
                         <span class="ptag ptag-modelisation">Modélisation</span>
                     </div>
-                </div>
+                </a>
                 <div class="projet-body">
                     <p class="projet-client">Laink</p>
                     <h3 class="projet-title">Lucky Tools · Items & Blocs 2D &amp; 3D</h3>
                     <p class="projet-desc">Items 2D et 3D créés pour le mod Lucky Tools de Laink. Modèles dessinés et texturés de A à Z, avec des designs ludiques, intuitifs et engageants.</p>
-                    <span class="projet-arrow">→</span>
                 </div>
-            </a>
+            </div>
 
                 </div><!-- /projets-track -->
             </div><!-- /projets-carousel -->
@@ -1956,7 +1922,7 @@
                 <div class="expertise-content">
                     <div class="expertise-icon-wrap"><i class="fas fa-seedling"></i></div>
                     <h3 class="expertise-title">Organique &amp; Décoration</h3>
-                    <p class="expertise-desc">Des sculptures organiques et dragons volants jusqu'aux petits détails innatendus au detours d'une ruelle, on ajoute de la vie et du réalisme à toutes nos créations.</p>
+                    <p class="expertise-desc">Des sculptures organiques et dragons volants jusqu'aux petits détails innatendus aux détours d'une ruelle, on ajoute de la vie et du réalisme à toutes nos créations.</p>
                 </div>
             </div>
 
@@ -2783,7 +2749,7 @@
                     }, 750);
                 };
                 preload.src = nextSrc;
-            }, 1800);
+            }, 2000);
         });
 
         card.addEventListener('mouseleave', () => {
@@ -2791,6 +2757,38 @@
             overlay.style.opacity = '0';
             setTimeout(() => { img.src = originalSrc; idx = 0; }, 700);
         });
+
+        // Mobile : auto-cycle when touch device
+        if (window.matchMedia('(hover: none)').matches) {
+            function cycleNext() {
+                idx = (idx + 1) % images.length;
+                const nextSrc = images[idx];
+                const preload = new Image();
+                preload.onload = () => {
+                    overlay.src = nextSrc;
+                    overlay.style.opacity = '1';
+                    setTimeout(() => {
+                        img.src = nextSrc;
+                        overlay.style.transition = 'none';
+                        overlay.style.opacity = '0';
+                        requestAnimationFrame(() => requestAnimationFrame(() => {
+                            overlay.style.transition = 'opacity 0.7s ease';
+                        }));
+                    }, 750);
+                };
+                preload.src = nextSrc;
+            }
+            const mobileObs = new IntersectionObserver(([e]) => {
+                if (e.isIntersecting) {
+                    if (!timer) timer = setInterval(cycleNext, 2000);
+                } else {
+                    clearInterval(timer); timer = null;
+                    overlay.style.opacity = '0';
+                    img.src = originalSrc; idx = 0;
+                }
+            }, { threshold: 0.5 });
+            mobileObs.observe(card);
+        }
     });
 
     /* ─── Projets Carousel ───────────────────────────────────── */
@@ -2850,7 +2848,7 @@
             clearInterval(autoTimer);
             autoTimer = setInterval(function () {
                 goTo(current + 1 < totalPages() ? current + 1 : 0);
-            }, 4500);
+            }, 6000);
         }
 
         btnPrev.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
@@ -2859,12 +2857,16 @@
         wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
         wrap.addEventListener('mouseleave', resetTimer);
 
-        // Touch swipe
+        // Touch swipe + freeze on hold
         let startX = 0;
-        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            clearInterval(autoTimer);
+        }, { passive: true });
         track.addEventListener('touchend', e => {
             const dx = e.changedTouches[0].clientX - startX;
-            if (Math.abs(dx) > 40) { dx < 0 ? goTo(current + 1) : goTo(current - 1); resetTimer(); }
+            if (Math.abs(dx) > 40) { dx < 0 ? goTo(current + 1) : goTo(current - 1); }
+            resetTimer();
         });
 
         // Resize
