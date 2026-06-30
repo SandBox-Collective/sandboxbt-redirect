@@ -156,7 +156,7 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 9999;
         }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--blanc); transition: all 0.3s; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
@@ -167,12 +167,16 @@
             display: flex !important;
             flex-direction: column;
             position: fixed;
-            inset: 0;
-            background: var(--gris3);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #18191c;
             align-items: center;
             justify-content: center;
             gap: 2.5rem;
-            z-index: 1000;
+            z-index: 9998;
+            overflow-y: auto;
         }
         .nav-links.open a { font-size: 1.5rem !important; letter-spacing: 0.08em; }
 
@@ -595,6 +599,21 @@
         .projet-cta-section {
             background: var(--bordeaux);
             padding: 28px 0;
+            position: relative;
+        }
+        .projet-cta-mascot {
+            position: absolute;
+            right: 6%;
+            top: -55px;
+            height: 130px;
+            width: auto;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+            transform: rotate(-6deg);
+            pointer-events: none;
+            transition: transform 0.4s ease;
+        }
+        .projet-cta-section:hover .projet-cta-mascot {
+            transform: rotate(4deg) translateY(-6px);
         }
         .projet-cta-inner {
             display: flex;
@@ -1251,64 +1270,6 @@
         }
         .founder-social-link:hover { background: var(--rose); color: var(--blanc); border-color: var(--rose); }
 
-        /* Discord CTA + Bibulle */
-        .discord-cta-wrap {
-            position: relative;
-            overflow: visible;
-        }
-
-        .bibulle-mascot {
-            position: absolute;
-            right: -4.5rem;
-            top: -86px;
-            height: 145px;
-            width: auto;
-            filter: drop-shadow(0 10px 28px rgba(0,0,0,0.6));
-            transform: rotate(-5deg);
-            pointer-events: none;
-            z-index: 10;
-            transition: transform 0.4s ease;
-        }
-        .discord-cta-wrap:hover .bibulle-mascot {
-            transform: rotate(-2deg) translateY(-6px);
-        }
-
-        .community-cta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem 3rem;
-            background: var(--rose);
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .community-cta-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--blanc);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .btn-discord {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            padding: 0.85em 2.2em;
-            border: 2px solid var(--blanc);
-            background: transparent;
-            color: var(--blanc);
-            cursor: pointer;
-            transition: all 0.22s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7em;
-            white-space: nowrap;
-        }
-        .btn-discord:hover { background: var(--blanc); color: var(--rose); }
-
         /* =====================================================
            FOOTER
         ===================================================== */
@@ -1514,6 +1475,10 @@
         .contact-success { color: #6fcf97; }
         .contact-error   { color: #eb5757; }
 
+        /* ── Nav logo masqué sur hero ── */
+        .nav-logo { transition: opacity 0.3s; }
+        .nav-logo.hidden { opacity: 0; pointer-events: none; }
+
         @media (max-width: 768px) {
             section { padding: 70px 0; }
             nav { padding: 1rem 1.5rem; }
@@ -1529,7 +1494,21 @@
             .hero-columns  { grid-template-columns: repeat(2, 1fr); }
             .hero-col:nth-child(3),
             .hero-col:nth-child(4) { display: none; }
-            .bibulle-mascot { height: 90px; right: 1rem; bottom: -12px; }
+            .stat-number { font-size: clamp(2rem, 8vw, 3rem); }
+            /* Players marquee : 3 lignes + items resserrés */
+            .players-marquee-wrap { margin-top: 2rem; }
+            .player-chip { padding: 0 1rem; }
+            .player-chip-name { font-size: 1.1rem; }
+            .players-track-reverse:nth-child(3),
+            .players-track-reverse ~ .players-track { display: none; }
+            /* Contact responsive */
+            .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contact-section { padding: 70px 0; }
+            /* CTA projet responsive */
+            .projet-cta-inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
+            .projet-cta-mascot { height: 110px; top: -44px; right: 11px; }
+            .projet-cta-actions { width: 100%; }
+            .projet-cta-btn { flex: 1; justify-content: center; }
         }
 
         @media (max-width: 520px) {
@@ -1537,6 +1516,8 @@
             .clients-grid  { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .galerie-grid  { grid-template-columns: 1fr 1fr; }
+            /* Galerie : item orphelin détecté par JS */
+            .gal-item.orphan { grid-column: span 2; padding-bottom: 40%; }
         }
     </style>
 </head>
@@ -1556,6 +1537,7 @@
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#equipe">Équipe</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="nav-cta">Discord ↗</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -1891,9 +1873,105 @@
 </section>
 
 <!-- ============================================================
+     EXPERTISE
+============================================================ -->
+<section class="expertise-section" id="expertise">
+
+    <!-- Bucket deco — expertise -->
+    <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
+         style="width:clamp(140px,16vw,220px);top:3rem;right:-2%;transform:rotate(8deg);opacity:0.07;color:var(--jaune);">
+        <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
+    </svg>
+
+    <div class="container">
+        <div class="section-label reveal">Savoir-faire</div>
+        <h2 class="section-title reveal">Notre <span class="accent">expertise</span></h2>
+
+        <div class="expertise-grid">
+
+            <div class="expertise-card reveal">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/Projet%20Citadelle.jpg" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fas fa-mountain"></i></div>
+                    <h3 class="expertise-title">Construction &amp; Terraforming</h3>
+                    <p class="expertise-desc">Cartes sur mesure, terrains façonnés à la main, biomes uniques, architectures variées. On pose chaque bloc avec intention pour des mondes où il fait bon se balader.</p>
+                </div>
+            </div>
+
+            <div class="expertise-card reveal reveal-d1">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/cité des glaces 3 - pont + village en fond.png" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fas fa-seedling"></i></div>
+                    <h3 class="expertise-title">Organique &amp; Décoration</h3>
+                    <p class="expertise-desc">Des sculptures organiques et dragons volants jusqu'aux petits détails innatendus au detours d'une ruelle, on ajoute de la vie et du réalisme à toutes nos créations.</p>
+                </div>
+            </div>
+
+            <div class="expertise-card reveal reveal-d2">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/models examples blockbench.png" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fas fa-cube"></i></div>
+                    <h3 class="expertise-title">Modélisation 3D &amp; Pixel Art</h3>
+                    <p class="expertise-desc">Items 2D, blocs custom, personnages full-3D. Du pixel art soigné aux modèles animés, on dessine, modèle et texture tout ce dont vous avez besoin.</p>
+                </div>
+            </div>
+
+            <div class="expertise-card reveal">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/cauchemar poster 2.png" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3 class="expertise-title">Mods &amp; Plugins sur mesure</h3>
+                    <p class="expertise-desc">Mécaniques introuvables en vanilla, systèmes de jeu uniques, blocs et items custom. On code ce dont vous avez besoin.</p>
+                </div>
+            </div>
+
+            <div class="expertise-card reveal reveal-d1">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/crazytown-s2-2.jpeg" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fas fa-layer-group"></i></div>
+                    <h3 class="expertise-title">Expérience complète</h3>
+                    <p class="expertise-desc">Modpack, serveur, gameplay : on assemble tout. De la flamme initiale à la mise en production, on vous accompagne à chaque étape pour concrétiser vos idées.</p>
+                </div>
+            </div>
+
+            <div class="expertise-card reveal reveal-d2">
+                <div class="expertise-bar"></div>
+                <div class="expertise-img-wrap">
+                    <img src="./images/cit%C3%A9%20de%20lartisana%20bigben.png" alt="">
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-icon-wrap"><i class="fab fa-twitch"></i></div>
+                    <h3 class="expertise-title">Communauté &amp; partage</h3>
+                    <p class="expertise-desc">Un Discord actif autour de la création Minecraft, et des lives sur Twitch où on construit ensemble. Un espace pour les passionnés, pas juste une vitrine.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
      CTA PROJET
 ============================================================ -->
 <section class="projet-cta-section">
+    <img src="./images/bibulle.png"
+         onerror="this.src='./images/hermit_crab-render2.png'; this.onerror=null;"
+         alt="" class="projet-cta-mascot">
     <div class="container">
         <div class="projet-cta-inner reveal">
             <div class="projet-cta-text">
@@ -2007,98 +2085,6 @@
     </div>
 </section>
 
-<!-- ============================================================
-     EXPERTISE
-============================================================ -->
-<section class="expertise-section" id="expertise">
-
-    <!-- Bucket deco — expertise -->
-    <svg class="bucket-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.33 91.22"
-         style="width:clamp(140px,16vw,220px);top:3rem;right:-2%;transform:rotate(8deg);opacity:0.07;color:var(--jaune);">
-        <path d="m75.99,65.67l12.12-44.2.22-.82-.1-.04h0l-16.59-6.57L38.06.75l-1.9-.75-.4.75L14.36,41.28l-1.19,2.25-4.75-1.9v.04s-.03,0-.03,0l-2.68,6.78L.39,61.89l-.39.97,2.45.97,41.59,16.45,14.2,5.61,5.52,2.19,7.93,3.13h0s.01,0,.01,0l.38-.97,5.33-13.45,2.68-6.78h-.02s0-.02,0-.02l-1.85-.72-2.91-1.14.11.04-.11-.04.67-2.46Zm-9.09,2.5l-1.29,4.71.1.04h0s3.73,1.48,3.73,1.48l.27.1-.13.33-2.38,6-17.8-7.04-14.2-5.62-24.8-9.81,2.37-6.01.12-.32,1.79.71,2.31.92,2.28-4.32h0l13.47-25.5h0l7.24-13.72,5.99,2.37,32.64,12.91-4.1,14.95h0l-7.62,27.81h0Z" fill="currentColor"/>
-    </svg>
-
-    <div class="container">
-        <div class="section-label reveal">Savoir-faire</div>
-        <h2 class="section-title reveal">Ce qu'on <span class="accent">Fait</span></h2>
-
-        <div class="expertise-grid">
-
-            <div class="expertise-card reveal">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/Projet%20Citadelle.jpg" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fas fa-mountain"></i></div>
-                    <h3 class="expertise-title">Construction &amp; Terraforming</h3>
-                    <p class="expertise-desc">Cartes sur mesure, terrains façonnés à la main, biomes uniques, architectures variées. On pose chaque bloc avec intention pour des mondes où il fait bon se balader.</p>
-                </div>
-            </div>
-
-            <div class="expertise-card reveal reveal-d1">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/cité des glaces 3 - pont + village en fond.png" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fas fa-seedling"></i></div>
-                    <h3 class="expertise-title">Organique &amp; Décoration</h3>
-                    <p class="expertise-desc">Des sculptures organiques et dragons volants jusqu'aux petits détails innatendus au detours d'une ruelle, on ajoute de la vie et du réalisme à toutes nos créations.</p>
-                </div>
-            </div>
-
-            <div class="expertise-card reveal reveal-d2">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/models examples blockbench.png" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fas fa-cube"></i></div>
-                    <h3 class="expertise-title">Modélisation 3D &amp; Pixel Art</h3>
-                    <p class="expertise-desc">Items 2D, blocs custom, personnages full-3D. Du pixel art soigné aux modèles animés, on dessine, modèle et texture tout ce dont vous avez besoin.</p>
-                </div>
-            </div>
-
-            <div class="expertise-card reveal">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/cauchemar poster 2.png" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fas fa-puzzle-piece"></i></div>
-                    <h3 class="expertise-title">Mods &amp; Plugins sur mesure</h3>
-                    <p class="expertise-desc">Mécaniques introuvables en vanilla, systèmes de jeu uniques, blocs et items custom. On code ce dont vous avez besoin.</p>
-                </div>
-            </div>
-
-            <div class="expertise-card reveal reveal-d1">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/crazytown-s2-2.jpeg" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fas fa-layer-group"></i></div>
-                    <h3 class="expertise-title">Expérience complète</h3>
-                    <p class="expertise-desc">Modpack, serveur, gameplay : on assemble tout. De la flamme initiale à la mise en production, on vous accompagne à chaque étape pour concrétiser vos idées.</p>
-                </div>
-            </div>
-
-            <div class="expertise-card reveal reveal-d2">
-                <div class="expertise-bar"></div>
-                <div class="expertise-img-wrap">
-                    <img src="./images/cit%C3%A9%20de%20lartisana%20bigben.png" alt="">
-                </div>
-                <div class="expertise-content">
-                    <div class="expertise-icon-wrap"><i class="fab fa-twitch"></i></div>
-                    <h3 class="expertise-title">Communauté &amp; partage</h3>
-                    <p class="expertise-desc">Un Discord actif autour de la création Minecraft, et des lives sur Twitch où on construit ensemble. Un espace pour les passionnés, pas juste une vitrine.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- ============================================================
      CLIENTS
@@ -2274,54 +2260,107 @@
     </div>
 
     <div class="players-marquee-wrap">
-        <!-- Ligne 1 — colorés = direct clients SANDBOX -->
+        <!-- Ligne 1 -->
         <div class="players-track">
             <div class="player-chip"><span class="player-chip-name featured">Mastu</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Michou</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Maghla</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Raffale</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Laink</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Zafeel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Guep</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Anyme023</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">JimmyBoy</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Aypierre</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Sora</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Michou</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Terracid</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">zafeel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">FoxieFern</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bloom</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Omeega</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Keidopamine</span><div class="player-dot"></div></div>
             <!-- duplicate -->
             <div class="player-chip"><span class="player-chip-name featured">Mastu</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Michou</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Maghla</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Raffale</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Laink</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Zafeel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Guep</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Anyme023</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">JimmyBoy</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Aypierre</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Sora</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Michou</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Terracid</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">zafeel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">FoxieFern</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bloom</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Omeega</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Keidopamine</span><div class="player-dot"></div></div>
         </div>
 
         <!-- Ligne 2 — reverse -->
         <div class="players-track players-track-reverse">
-            <div class="player-chip"><span class="player-chip-name featured">TheGuill84</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Guep</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Omeega</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Sora</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">ChrisGames</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Raska</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Foxie</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Bloom</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Laink</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Dwarmas</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Maghla</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">RASKA_yt</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">JimmyBoy</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">YoungBechamel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Raffale_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">SamEzTwitch</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Hctuan</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Leila</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Mewen</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">JayloraN</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Flamby</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Kalevis_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">idkbutimleila</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Samo</span><div class="player-dot"></div></div>
             <!-- duplicate -->
-            <div class="player-chip"><span class="player-chip-name featured">TheGuill84</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Guep</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Omeega</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">Sora</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name featured">ChrisGames</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Raska</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Foxie</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Bloom</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Laink</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Dwarmas</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Maghla</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">RASKA_yt</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">JimmyBoy</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">YoungBechamel</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Raffale_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">SamEzTwitch</span><div class="player-dot"></div></div>
             <div class="player-chip"><span class="player-chip-name">Hctuan</span><div class="player-dot"></div></div>
-            <div class="player-chip"><span class="player-chip-name">Leila</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Mewen</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">JayloraN</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Flamby</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Kalevis_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">idkbutimleila</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Samo</span><div class="player-dot"></div></div>
+        </div>
+
+        <!-- Ligne 3 -->
+        <div class="players-track players-track-extra" style="margin-top:1rem;">
+            <div class="player-chip"><span class="player-chip-name">MatinPonk</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Aypierre</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Minoc</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Fukano</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bytell</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Chris_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Tahyme</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bichard</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bahason</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Ika</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Lvcyd</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Demazelle</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">mathoxx</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">redtoxx</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">flannou</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">yassou</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">nagatow</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">dart</span><div class="player-dot"></div></div>
+            <!-- duplicate -->
+            <div class="player-chip"><span class="player-chip-name">MatinPonk</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Aypierre</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Minoc</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Fukano</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bytell</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name featured">Chris_</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Tahyme</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bichard</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Bahason</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Ika</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Lvcyd</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">Demazelle</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">mathoxx</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">redtoxx</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">flannou</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">yassou</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">nagatow</span><div class="player-dot"></div></div>
+            <div class="player-chip"><span class="player-chip-name">dart</span><div class="player-dot"></div></div>
         </div>
     </div>
 
@@ -2415,21 +2454,6 @@
 
         </div>
 
-        <!-- CTA Discord + Bibulle mascotte -->
-        <!-- ⚠️ Bibulle : ajoutez ./images/bibulle.png dans votre dossier images pour qu'il apparaisse -->
-        <div class="discord-cta-wrap reveal">
-            <img class="bibulle-mascot"
-                 src="./images/bibulle.png"
-                 alt="Bibulle Mascotte SANDBOX"
-                 onerror="this.src='./images/hermit_crab-render2.png'; this.onerror=null;">
-            <div class="community-cta">
-                <p class="community-cta-text">Contacte nous ou rejoins la communauté SANDBOX sur notre Discord</p>
-                <a href="https://discord.gg/5EkbpjqnJ" target="_blank" class="btn-discord">
-                    <i class="fab fa-discord"></i> Rejoindre
-                </a>
-            </div>
-        </div>
-
     </div>
 </section>
 
@@ -2521,9 +2545,13 @@
 <script>
     /* ─── NAV ────────────────────────────────────────────────── */
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
+    const updateNav = () => {
         nav.classList.toggle('scrolled', window.scrollY > 80);
-    }, { passive: true });
+        const heroH = document.getElementById('hero').offsetHeight;
+        document.querySelector('.nav-logo').classList.toggle('hidden', window.scrollY < heroH - 80);
+    };
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
 
     const hamburger = document.getElementById('hamburger');
     const navLinks  = document.getElementById('nav-links');
@@ -2755,6 +2783,29 @@
         });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
+
+    /* ── Galerie : détecter items orphelins sur mobile ── */
+    function fixGalerieOrphans() {
+        const grid = document.getElementById('galerie-grid');
+        if (!grid) return;
+        const items = [...grid.querySelectorAll('.gal-item')];
+        items.forEach(i => i.classList.remove('orphan'));
+        if (window.innerWidth > 520) return;
+        // Grouper par ligne selon offsetTop
+        const rows = {};
+        items.forEach(i => {
+            const top = i.offsetTop;
+            if (!rows[top]) rows[top] = [];
+            rows[top].push(i);
+        });
+        Object.values(rows).forEach(row => {
+            if (row.length === 1 && !row[0].classList.contains('wide') && !row[0].classList.contains('wide3') && !row[0].classList.contains('full')) {
+                row[0].classList.add('orphan');
+            }
+        });
+    }
+    window.addEventListener('resize', fixGalerieOrphans);
+    fixGalerieOrphans();
 
     /* ── Scroll to contact ── */
     document.querySelector('.scroll-to-contact').addEventListener('click', e => {
