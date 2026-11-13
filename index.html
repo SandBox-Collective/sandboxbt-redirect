@@ -716,6 +716,34 @@
             color: rgba(254,252,254,0.55);
         }
 
+        /* Cartouches de téléchargement (CurseForge) */
+        .projet-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        .plink {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blanc);
+            text-decoration: none;
+            padding: 0.5em 0.85em;
+            border: 1px solid rgba(254,252,254,0.18);
+            background: rgba(254,252,254,0.04);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .plink i { color: #F16436; font-size: 0.85em; }
+        .plink:hover { background: #F16436; border-color: #F16436; color: #18191c; }
+        .plink:hover i { color: #18191c; }
+
 
         /* =====================================================
            GALERIE
@@ -1971,6 +1999,80 @@
             <div class="projets-carousel">
                 <div class="projets-track">
 
+            <!-- CrazyTown S3 -->
+            <div class="projet-card reveal"
+               data-images='["https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg","./images/builds/crazytown-s3-01.webp","./images/builds/crazytown-s2-05.webp"]'>
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=AKrOH_lFJjM&list=PLVP9lGfVZgtRJQ527-2LODTAGDoezVAXp" target="_blank" rel="noopener">
+                    <img src="https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg"
+                         onerror="this.src='./images/builds/crazytown-s3-01.webp'"
+                         alt="CrazyTown Saison 3">
+                    <div class="projet-tags">
+                        <span class="ptag ptag-build">Build</span>
+                        <span class="ptag ptag-mods">Moding</span>
+                        <span class="ptag ptag-modelisation">Modélisation</span>
+                        <span class="ptag ptag-evenementiel">Événementiel</span>
+                        <span class="ptag ptag-rp">RP</span>
+                    </div>
+                    <div class="projet-play"><i class="fas fa-play"></i></div>
+                </a>
+                <div class="projet-body">
+                    <p class="projet-client">Mastu</p>
+                    <h3 class="projet-title">CrazyTown Saison 3</h3>
+                    <p class="projet-desc">La suite, en encore plus grand. Mods exclusifs, modèles 3D, laser game, boss custom. Tout pensé, tout construit ensemble par l'équipe SANDBOX.</p>
+                    <div class="projet-links">
+                        <a class="plink" href="https://www.curseforge.com/minecraft/modpacks/crazytown-season-3" target="_blank" rel="noopener"><i class="fas fa-download"></i>Modpack</a>
+                        <a class="plink" href="https://www.curseforge.com/minecraft/mc-mods/crazythings" target="_blank" rel="noopener"><i class="fas fa-download"></i>CrazyThings</a>
+                        <a class="plink" href="https://www.curseforge.com/minecraft/mc-mods/goat-du-loat" target="_blank" rel="noopener"><i class="fas fa-download"></i>Goat du Loat</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cité des Régions -->
+            <div class="projet-card reveal"
+               data-images='["./images/builds/cite-regions-guill.webp","./images/builds/cite-regions-ile.webp","./images/builds/cite-regions-ville.webp","./images/builds/cite-regions-pont.webp","./images/builds/cite-regions-place.webp","./images/builds/cite-regions-annonce.webp","./images/builds/cite-regions-occitanie.webp"]'>
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=iPvGLvLJHKo" target="_blank" rel="noopener">
+                    <img src="./images/builds/cite-regions-guill.webp"
+                         onerror="this.src='https://img.youtube.com/vi/iPvGLvLJHKo/maxresdefault.jpg'"
+                         alt="Cité des Régions">
+                    <div class="projet-tags">
+                        <span class="ptag ptag-build">Build</span>
+                        <span class="ptag ptag-evenementiel">Événementiel</span>
+                    </div>
+                    <div class="projet-play"><i class="fas fa-play"></i></div>
+                </a>
+                <div class="projet-body">
+                    <p class="projet-client">TheGuill84 · Spawn &amp; Mini Jeux</p>
+                    <h3 class="projet-title">Cité des Régions</h3>
+                    <p class="projet-desc">La cité de l'événement de TheGuill84, du 22 au 29 août 2026 : 24 équipes et 144 joueurs représentant les régions de France métropolitaine, d'outre-mer et des pays francophones. La map a ensuite accueilli les qualifications des Guill Games 2.</p>
+                </div>
+            </div>
+
+            <!-- Une Barre de Vie -->
+            <div class="projet-card reveal"
+               data-images='["./images/builds/une-barre-de-vie-affiche.webp","./images/builds/une-barre-de-vie-classe.webp","./images/builds/une-barre-de-vie-tableau.webp"]'>
+                <a class="projet-thumb" href="https://www.youtube.com/watch?v=Lobp35ma4ks" target="_blank" rel="noopener">
+                    <img src="./images/builds/une-barre-de-vie-affiche.webp"
+                         onerror="this.src='https://img.youtube.com/vi/Lobp35ma4ks/maxresdefault.jpg'"
+                         alt="Une Barre de Vie Ultra Hardcore">
+                    <div class="projet-tags">
+                        <span class="ptag ptag-build">Build</span>
+                        <span class="ptag ptag-mods">Moding</span>
+                        <span class="ptag ptag-modelisation">Modélisation</span>
+                        <span class="ptag ptag-evenementiel">Événementiel</span>
+                    </div>
+                    <div class="projet-play"><i class="fas fa-play"></i></div>
+                </a>
+                <div class="projet-body">
+                    <p class="projet-client">Zafeel · avec Mastu &amp; Hctuan</p>
+                    <h3 class="projet-title">Une Barre de Vie</h3>
+                    <p class="projet-desc">Finir Minecraft en ultra hardcore à trois, avec une seule barre de vie pour toute l'équipe : le premier qui la vide fait perdre la run à tout le monde. Mod et modpack faits sur mesure, avec une salle de classe tenue par Maîtresse Boulon, une maîtresse robot : notes, bons points, cérémonies et flashback de chaque défaite.</p>
+                    <div class="projet-links">
+                        <a class="plink" href="https://www.curseforge.com/minecraft/mc-mods/one-health-bar-ultra-hardcore" target="_blank" rel="noopener"><i class="fas fa-download"></i>Mod</a>
+                        <a class="plink" href="https://www.curseforge.com/minecraft/modpacks/one-health-bar-ultra-hardcore-pack" target="_blank" rel="noopener"><i class="fas fa-download"></i>Modpack</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- CrazyTown S2 -->
             <div class="projet-card reveal"
                data-images='["https://img.youtube.com/vi/JB10Gb0Vpys/maxresdefault.jpg","./images/builds/crazytown-s2-01.webp","./images/builds/crazytown-s2-02.webp","./images/builds/crazytown-s2-05.webp"]'>
@@ -1994,26 +2096,24 @@
                 </div>
             </div>
 
-            <!-- CrazyTown S3 -->
+            <!-- CrazyPhone -->
             <div class="projet-card reveal"
-               data-images='["https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg","./images/builds/crazytown-s3-01.webp","./images/builds/crazytown-s2-05.webp"]'>
-                <a class="projet-thumb" href="https://www.youtube.com/watch?v=AKrOH_lFJjM&list=PLVP9lGfVZgtRJQ527-2LODTAGDoezVAXp" target="_blank" rel="noopener">
-                    <img src="https://img.youtube.com/vi/AKrOH_lFJjM/maxresdefault.jpg"
-                         onerror="this.src='./images/builds/crazytown-s3-01.webp'"
-                         alt="CrazyTown Saison 3">
+               data-images='["./images/builds/crazyphone-main.webp","./images/builds/crazyphone-messages.webp","./images/builds/crazyphone-photo.webp"]'>
+                <a class="projet-thumb" href="https://www.curseforge.com/minecraft/mc-mods/crazyphone" target="_blank" rel="noopener">
+                    <img src="./images/builds/crazyphone-main.webp" alt="CrazyPhone">
                     <div class="projet-tags">
-                        <span class="ptag ptag-build">Build</span>
                         <span class="ptag ptag-mods">Moding</span>
                         <span class="ptag ptag-modelisation">Modélisation</span>
-                        <span class="ptag ptag-evenementiel">Événementiel</span>
                         <span class="ptag ptag-rp">RP</span>
                     </div>
-                    <div class="projet-play"><i class="fas fa-play"></i></div>
                 </a>
                 <div class="projet-body">
-                    <p class="projet-client">Mastu</p>
-                    <h3 class="projet-title">CrazyTown Saison 3</h3>
-                    <p class="projet-desc">La suite, en encore plus grand. Mods exclusifs, modèles 3D, laser game, boss custom. Tout pensé, tout construit ensemble par l'équipe SANDBOX.</p>
+                    <p class="projet-client">Mastu · mod public</p>
+                    <h3 class="projet-title">CrazyPhone</h3>
+                    <p class="projet-desc">Un smartphone à tenir en main : contacts, messages de groupe, photos et albums, appels et messages vocaux avec Simple Voice Chat. Né d'une commande de Mastu, il est sorti en version publique avec son accord, sur Fabric et NeoForge.</p>
+                    <div class="projet-links">
+                        <a class="plink" href="https://www.curseforge.com/minecraft/mc-mods/crazyphone" target="_blank" rel="noopener"><i class="fas fa-download"></i>Mod</a>
+                    </div>
                 </div>
             </div>
 
@@ -2033,6 +2133,9 @@
                     <p class="projet-client">Sora · ChrisGames</p>
                     <h3 class="projet-title">Cauchemar Série Horreur</h3>
                     <p class="projet-desc">Série horreur scénarisée et construite pour Sora. Donjons, ambiance, narration : une carte pensée comme une vraie production vidéo.</p>
+                    <div class="projet-links">
+                        <a class="plink" href="https://www.curseforge.com/minecraft/modpacks/cauchemar" target="_blank" rel="noopener"><i class="fas fa-download"></i>Modpack</a>
+                    </div>
                 </div>
             </div>
 
@@ -2260,6 +2363,45 @@
     </div>
 
     <div class="galerie-grid" id="galerie-grid">
+        <!-- Cité des Régions · Row A : wide(2) + normal + normal -->
+        <div class="gal-item wide" data-label="Cité des Régions · La ville">
+            <img src="./images/builds/cite-regions-ville.webp" alt="Cité des Régions, la ville et sa statue" loading="lazy" style="object-position: center 35%">
+            <span class="gal-label">Cité des Régions · La ville</span>
+        </div>
+        <div class="gal-item" data-label="Cité des Régions · Le train">
+            <img src="./images/builds/cite-regions-train.webp" alt="Cité des Régions, le train au pied de la statue" loading="lazy">
+            <span class="gal-label">Cité des Régions · Le train</span>
+        </div>
+        <div class="gal-item" data-label="Cité des Régions · Le moulin">
+            <img src="./images/builds/cite-regions-moulin.webp" alt="Cité des Régions, le moulin et les champs" loading="lazy">
+            <span class="gal-label">Cité des Régions · Le moulin</span>
+        </div>
+        <!-- Cité des Régions · Row B : normal + wide(2) + normal -->
+        <div class="gal-item" data-label="Cité des Régions · La statue">
+            <img src="./images/builds/cite-regions-statue.webp" alt="Cité des Régions, la statue géante" loading="lazy">
+            <span class="gal-label">Cité des Régions · La statue</span>
+        </div>
+        <div class="gal-item wide" data-label="Cité des Régions · Le pont">
+            <img src="./images/builds/cite-regions-pont.webp" alt="Cité des Régions, le bateau sous le pont rouge" loading="lazy" style="object-position: center 30%">
+            <span class="gal-label">Cité des Régions · Le pont</span>
+        </div>
+        <div class="gal-item" data-label="Cité des Régions · Les jardins">
+            <img src="./images/builds/cite-regions-jardins.webp" alt="Cité des Régions, les jardins du monastère" loading="lazy">
+            <span class="gal-label">Cité des Régions · Les jardins</span>
+        </div>
+        <!-- Cité des Régions · Row C : normal + wide(2) + normal -->
+        <div class="gal-item" data-label="Cité des Régions · La taverne">
+            <img src="./images/builds/cite-regions-taverne.webp" alt="Cité des Régions, la taverne" loading="lazy">
+            <span class="gal-label">Cité des Régions · La taverne</span>
+        </div>
+        <div class="gal-item wide" data-label="Cité des Régions · La place">
+            <img src="./images/builds/cite-regions-place.webp" alt="Cité des Régions, la place de l'hôtel de ville" loading="lazy">
+            <span class="gal-label">Cité des Régions · La place</span>
+        </div>
+        <div class="gal-item" data-label="Cité des Régions · L'île">
+            <img src="./images/builds/cite-regions-ile.webp" alt="Cité des Régions, l'île vue de loin" loading="lazy">
+            <span class="gal-label">Cité des Régions · L'île</span>
+        </div>
         <!-- Row 1 : wide(2) + normal + normal -->
         <div class="gal-item wide" data-label="Cité des Glaces III - Panorama">
             <img src="./images/builds/cite-glaces-panorama.webp" alt="Cité des Glaces" loading="lazy">
